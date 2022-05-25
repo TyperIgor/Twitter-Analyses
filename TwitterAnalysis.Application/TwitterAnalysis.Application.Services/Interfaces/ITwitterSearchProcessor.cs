@@ -1,8 +1,10 @@
-﻿
+﻿using System.Threading.Tasks;
+using TwitterAnalysis.Application.Messages.Response;
+
 namespace TwitterAnalysis.Application.Services.Interfaces
 {
     public interface ITwitterSearchProcessor
     {
-        void ProcessSearch(string query);
+        Task<TweetResponse> ProcessSearch(string query);
     }
 }

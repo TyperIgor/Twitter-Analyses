@@ -1,39 +1,65 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters.V2;
 using TwitterAnalysis.App.Services.Interfaces;
+using TwitterAnalysis.App.Services.Models;
+using Tweetinvi.Models.V2;
 
 namespace TwitterAnalysis.App.Services
 {
     public class TwitterSearchService : ITwitterSearchQuery
     {
-		private string BearerToken = "";
+		private readonly IConfiguration _configuration;
 
+        public TwitterSearchService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
-		public async void GetTweetBySearch(string query)
-		{
-			var appCredentials = new TwitterClient(new ConsumerOnlyCredentials { BearerToken = BearerToken });
+		public async Task<IEnumerable<TweetData>> GetTweetBySearch(string query)
+        {
+            try
+            {
+                var appCredentials = Authenticate();
 
-			try
-			{
+                var searchParameters = new SearchTweetsV2Parameters(query) { PageSize = 100, PlaceFields = new HashSet<string> { "Brasil"} };
 
-				var searchParameters = new SearchTweetsV2Parameters("Racismo")
-				{
-					PageSize = 100,
-				};
+                var response = await appCredentials.SearchV2.SearchTweetsAsync(searchParameters);
 
-				var response = await appCredentials.SearchV2.SearchTweetsAsync(searchParameters);
-				foreach (var item in response.Tweets)
-				{
-					Console.WriteLine($"Twitter hoje: {item.Text} ");
-				}
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine("Erro " + e);
-				throw e;
-			}
-		}
-	}
+                return MapperTweetsResponse(response);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error : {e.Message}");
+                throw;
+            }
+        }
+
+        private static IEnumerable<TweetData> MapperTweetsResponse(SearchTweetsV2Response responses)
+        {
+            var TweetData = new List<TweetData>();
+
+            foreach (var response in responses.Tweets)
+            {
+                var tweet = new TweetData
+                {
+                    TwitterUser = response.Source,
+                    Text = response.Text
+                };
+
+                TweetData.Add(tweet);
+            }
+
+            return TweetData;
+        }
+
+        private TwitterClient Authenticate()
+        {
+            return new TwitterClient(new ConsumerOnlyCredentials { BearerToken = _configuration.GetSection("BearerToken").Value });
+        }
+    }
 }

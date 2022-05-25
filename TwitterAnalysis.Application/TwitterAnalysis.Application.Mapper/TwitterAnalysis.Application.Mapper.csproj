@@ -5,8 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TwitterAnalysis.App.Services\TwitterAnalysis.App.Services.csproj" />
-    <ProjectReference Include="..\TwitterAnalysis.Application.Mapper\TwitterAnalysis.Application.Mapper.csproj" />
     <ProjectReference Include="..\TwitterAnalysis.Application.Messages\TwitterAnalysis.Application.Messages.csproj" />
   </ItemGroup>
 

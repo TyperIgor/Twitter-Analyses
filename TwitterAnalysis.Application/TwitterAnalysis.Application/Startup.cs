@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using System;
+using TwitterAnalysis.Application.Extension;
+using TwitterAnalysis.Application.Swagger;
+using FluentValidation.AspNetCore;
+using TwitterAnalysis.Application.Validations;
 
 namespace TwitterAnalysis.Application
 {
@@ -20,20 +22,12 @@ namespace TwitterAnalysis.Application
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo 
-                { 
-                    Title = "Twitter Analysis API ", 
-                    Version = "v1",
-                    Contact = new OpenApiContact()
-                    {
-                        Name = "Igor Lima",
-                        Url = new Uri("https://github.com/TyperIgor/TwitterRacialApplication"),
-                    }
-                });
-            });
+            services.AddApplication();
+
+            services.AddControllers()
+                .AddFluentValidation(c => c.RegisterValidatorsFromAssemblyContaining<QueryFieldValidator>());
+
+            services.AddSwaggerServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,8 +37,12 @@ namespace TwitterAnalysis.Application
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger", "TwitterAnalysis.Application v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TwitterAnalysis.Application v1"));
             }
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
 
             app.UseAuthorization();
 

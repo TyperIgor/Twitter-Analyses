@@ -5,8 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TwitterAnalysis.App.Services\TwitterAnalysis.App.Services.csproj" />
-    <ProjectReference Include="..\TwitterAnalysis.Application.Mapper\TwitterAnalysis.Application.Mapper.csproj" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TwitterAnalysis.Application.Messages\TwitterAnalysis.Application.Messages.csproj" />
   </ItemGroup>
 

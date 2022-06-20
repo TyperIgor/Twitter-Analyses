@@ -10,17 +10,17 @@
 
 ![image](https://user-images.githubusercontent.com/46224297/174506562-95ec8650-ab1a-4e43-9b49-7a037bb5bc82.png)
 
->  Api that provides racists tweets
+>  Api that search on twitter app analysing racists tweets using machine learning and retriving data
 
 ### Ajustes e melhorias
 
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
+The project is still on development... 
 
-- [x] Tarefa 1
-- [x] Tarefa 2
-- [x] Tarefa 3
-- [ ] Tarefa 4
-- [ ] Tarefa 5
+- [x] Task 1 : Authenticate on twitter with bearer token
+- [x] Task 2 :
+- [x] 
+- [ ] 
+- [ ] 
 
 ## 💻 Pré-requisitos
 
@@ -30,9 +30,9 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 * Você tem uma máquina `<Windows / Linux / Mac>`. Indique qual sistema operacional é compatível / não compatível.
 * Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
 
-## 🚀 Instalando <nome_do_projeto>
+## 🚀 Instalando <TwitterAnalysis>
 
-Para instalar o <nome_do_projeto>, siga estas etapas:
+Para instalar o TwitterAnalysis Application, siga estas etapas:
 
 Linux e macOS:
 ```

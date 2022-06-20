@@ -12,7 +12,7 @@
 
 >  Api that search on twitter app analysing racists tweets using machine learning and retriving data
 
-### Ajustes e melhorias
+### Improvements 
 
 The project is still on development... 
 
@@ -22,12 +22,12 @@ The project is still on development...
 - [ ] 
 - [ ] 
 
-## 💻 Pré-requisitos
+## 💻 Preconditions
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
-<!---Estes são apenas requisitos de exemplo. Adicionar, duplicar ou remover conforme necessário--->
-* Você instalou a versão mais recente de `<linguagem / dependência / requeridos>`
-* Você tem uma máquina `<Windows / Linux / Mac>`. Indique qual sistema operacional é compatível / não compatível.
+
+* Você instalou a versão mais recente do .Net (5.0 or 6.0)
+* Você tem uma máquina  Windows / Linux / Mac `. Todos são compatíveis
 * Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
 
 ## 🚀 Instalando <TwitterAnalysis>

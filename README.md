@@ -18,7 +18,7 @@ The project is still on development...
 
 - [x] Task 1 : Authenticate on twitter with bearer token
 - [x] Task 2 :
-- [x] 
+- [ ] 
 - [ ] 
 - [ ] 
 

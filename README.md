@@ -8,7 +8,7 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/TyperIgor/README-template?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/TyperIgor/README-template?style=for-the-badge)
 
-<img src="exemplo-image.png" alt="exemplo imagem">
+<img src="![image](https://user-images.githubusercontent.com/46224297/174506547-6d2e555f-054c-423e-b2c8-a269c150aff1.png)" alt="exemplo imagem">
 
 >  Api that provides racists tweets
 

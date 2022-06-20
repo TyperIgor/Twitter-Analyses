@@ -27,10 +27,10 @@ The project is still on development...
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 * Você instalou a versão mais recente do .Net (5.0 or 6.0)
-* Você tem uma máquina  Windows / Linux / Mac `. Todos são compatíveis
+* Você tem uma máquina  Windows / Linux / Mac. Todos são compatíveis
 * Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
 
-## 🚀 Instalando <TwitterAnalysis>
+## 🚀 Getting Start <TwitterAnalysis>
 
 Para instalar o TwitterAnalysis Application, siga estas etapas:
 

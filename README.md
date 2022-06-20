@@ -9,7 +9,6 @@
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/TyperIgor/README-template?style=for-the-badge)
 
 ![image](https://user-images.githubusercontent.com/46224297/174506562-95ec8650-ab1a-4e43-9b49-7a037bb5bc82.png)
- alt="exemplo imagem">
 
 >  Api that provides racists tweets
 

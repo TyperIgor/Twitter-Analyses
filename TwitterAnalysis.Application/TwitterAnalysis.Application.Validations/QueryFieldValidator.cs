@@ -1,5 +1,4 @@
-﻿using System;
-using FluentValidation;
+﻿using FluentValidation;
 using TwitterAnalysis.Application.Messages.Request;
 
 namespace TwitterAnalysis.Application.Validations

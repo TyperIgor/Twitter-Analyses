@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using TwitterAnalysis.App.Services.Interfaces;
 using TwitterAnalysis.Application.Mapper;
@@ -23,13 +22,13 @@ namespace TwitterAnalysis.Application.Services
             {
                 var tweet = await _twitterSearchQuery.GetTweetBySearch(query);
 
-                return TweetMapper.MapperTweetModel(tweet);
+                return TweetMapper.MapperTweetResponseModel(tweet);
 
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Error : {e.Message}");
-                throw e;
+                throw;
             }
         }
     }

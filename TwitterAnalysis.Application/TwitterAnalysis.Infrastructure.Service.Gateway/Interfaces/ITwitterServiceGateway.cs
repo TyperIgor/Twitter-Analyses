@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using TwitterAnalysis.App.Service.Model;
 
-namespace TwitterAnalysis.App.Services.Interfaces
+namespace TwitterAnalysis.Infrastructure.Service.Gateway.Interfaces
 {
-    public interface ITwitterSearchQuery
+    public interface ITwitterServiceGateway
     {
         Task<IEnumerable<TweetData>> GetTweetBySearch(string query);
     }

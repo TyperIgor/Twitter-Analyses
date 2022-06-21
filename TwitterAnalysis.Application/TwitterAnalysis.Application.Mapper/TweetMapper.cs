@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
+using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.Application.Messages.Response;
-using TwitterAnalysis.App.Services.Models;
 
 namespace TwitterAnalysis.Application.Mapper
 {
     public class TweetMapper
     {
-        public static TweetResponse MapperTweetModel(IEnumerable<TweetData> tweets)
+        public static TweetResponse MapperTweetResponseModel(IEnumerable<TweetData> tweets)
         {
             var tweetResponse = new TweetResponse();
             var tweetdataList = new List<TweetData>();

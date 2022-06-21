@@ -17,6 +17,7 @@
     <ProjectReference Include="..\TwitterAnalysis.Application.Messages\TwitterAnalysis.Application.Messages.csproj" />
     <ProjectReference Include="..\TwitterAnalysis.Application.Services\TwitterAnalysis.Application.Services.csproj" />
     <ProjectReference Include="..\TwitterAnalysis.Application.Validations\TwitterAnalysis.Application.Validations.csproj" />
+    <ProjectReference Include="..\TwitterAnalysis.Infrastructure.Data\TwitterAnalysis.Infrastructure.Data.csproj" />
   </ItemGroup>
 
 </Project>

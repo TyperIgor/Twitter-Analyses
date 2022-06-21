@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TwitterAnalysis.App.Services.Models
+namespace TwitterAnalysis.App.Service.Model
 {
     public class TweetData
     {

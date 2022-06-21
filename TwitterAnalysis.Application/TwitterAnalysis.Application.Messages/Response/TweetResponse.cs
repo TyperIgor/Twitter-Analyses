@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using TwitterAnalysis.App.Services.Models;
+using TwitterAnalysis.App.Service.Model;
 
 namespace TwitterAnalysis.Application.Messages.Response
 {

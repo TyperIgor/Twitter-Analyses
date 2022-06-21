@@ -7,7 +7,7 @@ using TwitterAnalysis.Application.Services.Interfaces;
 namespace TwitterAnalysis.Application.Controllers
 {
     [ApiController]
-    [Route("api/v1/search")]
+    [Route("api/[controller]")]
     [Produces("application/json")]
     public class TwitterQueryController : Controller
     {
@@ -25,10 +25,9 @@ namespace TwitterAnalysis.Application.Controllers
         }
 
         [HttpPost()]
+        [ProducesResponseType(200)]
         public async Task<ActionResult<TweetResponse>> PostQuery([FromBody] QueryRequest request)
         {
-            if (request == null) return BadRequest();
-
             var result = await _twitterSearchProcessor.ProcessSearch(request.Query);
 
             return Ok(result);

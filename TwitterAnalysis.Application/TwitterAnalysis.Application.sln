@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Host", "1. Host", "{1356
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application Layer", "2. Application Layer", "{A7FAFD83-21DE-4092-ADA9-993A4E17D24F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Service Layer", "3. Service Layer", "{2AF14ABE-72BC-490B-BE23-C5652F198804}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Service Domain Layer", "3. Service Domain Layer", "{2AF14ABE-72BC-490B-BE23-C5652F198804}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infrastucture Layer", "4. Infrastucture Layer", "{67D3ED35-275F-48F6-8E93-C8315C6101E7}"
 EndProject
@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Services", "2. Services"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Application.Services", "TwitterAnalysis.Application.Services\TwitterAnalysis.Application.Services.csproj", "{B80CA537-87E2-4222-91F2-7551BEAE9D35}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{07E8E014-9593-4AE5-97EA-C813B2F18F54}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Services", "1. Services", "{07E8E014-9593-4AE5-97EA-C813B2F18F54}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.App.Services", "TwitterAnalysis.App.Services\TwitterAnalysis.App.Services.csproj", "{CE5865EB-98EF-44D1-B8FF-E1152D7C8DC2}"
 EndProject
@@ -35,7 +35,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Application
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Mappers", "4. Mappers", "{C2A2C1E0-E697-4201-952F-4111E1609647}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterAnalysis.Application.Mapper", "TwitterAnalysis.Application.Mapper\TwitterAnalysis.Application.Mapper.csproj", "{23AFAC06-DAC6-4F14-B25C-9ABF19B7AAC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Application.Mapper", "TwitterAnalysis.Application.Mapper\TwitterAnalysis.Application.Mapper.csproj", "{23AFAC06-DAC6-4F14-B25C-9ABF19B7AAC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Data", "1. Data", "{D1220996-3572-4C7A-9DEE-1875A8CE950C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Twitter Gateway", "2. Twitter Gateway", "{09BC74B7-7383-4B3D-B70B-D16881217F75}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Infrastructure.Service.Gateway", "TwitterAnalysis.Infrastructure.Service.Gateway\TwitterAnalysis.Infrastructure.Service.Gateway.csproj", "{01B6DD91-ECE4-4150-A0A8-80B042590264}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Models", "2. Models", "{744F0D84-5AA5-49E8-931C-306F762915E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.App.Service.Model", "TwitterAnalysis.App.Service.Model\TwitterAnalysis.App.Service.Model.csproj", "{9CAD09AE-6B04-4F05-9713-198E816353E7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Infrastructure.Data", "TwitterAnalysis.Infrastructure.Data\TwitterAnalysis.Infrastructure.Data.csproj", "{75F1F739-3B8A-4428-9604-DC15D1E2958A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +79,18 @@ Global
 		{23AFAC06-DAC6-4F14-B25C-9ABF19B7AAC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23AFAC06-DAC6-4F14-B25C-9ABF19B7AAC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23AFAC06-DAC6-4F14-B25C-9ABF19B7AAC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01B6DD91-ECE4-4150-A0A8-80B042590264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01B6DD91-ECE4-4150-A0A8-80B042590264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01B6DD91-ECE4-4150-A0A8-80B042590264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01B6DD91-ECE4-4150-A0A8-80B042590264}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CAD09AE-6B04-4F05-9713-198E816353E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CAD09AE-6B04-4F05-9713-198E816353E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CAD09AE-6B04-4F05-9713-198E816353E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CAD09AE-6B04-4F05-9713-198E816353E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75F1F739-3B8A-4428-9604-DC15D1E2958A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75F1F739-3B8A-4428-9604-DC15D1E2958A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75F1F739-3B8A-4428-9604-DC15D1E2958A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75F1F739-3B8A-4428-9604-DC15D1E2958A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +112,12 @@ Global
 		{E147FDC3-1412-43B2-9C91-C0A8431FEF79} = {EEEFA295-9D82-4C1F-B803-0C3288E22CBD}
 		{C2A2C1E0-E697-4201-952F-4111E1609647} = {A7FAFD83-21DE-4092-ADA9-993A4E17D24F}
 		{23AFAC06-DAC6-4F14-B25C-9ABF19B7AAC0} = {C2A2C1E0-E697-4201-952F-4111E1609647}
+		{D1220996-3572-4C7A-9DEE-1875A8CE950C} = {67D3ED35-275F-48F6-8E93-C8315C6101E7}
+		{09BC74B7-7383-4B3D-B70B-D16881217F75} = {67D3ED35-275F-48F6-8E93-C8315C6101E7}
+		{01B6DD91-ECE4-4150-A0A8-80B042590264} = {09BC74B7-7383-4B3D-B70B-D16881217F75}
+		{744F0D84-5AA5-49E8-931C-306F762915E1} = {2AF14ABE-72BC-490B-BE23-C5652F198804}
+		{9CAD09AE-6B04-4F05-9713-198E816353E7} = {744F0D84-5AA5-49E8-931C-306F762915E1}
+		{75F1F739-3B8A-4428-9604-DC15D1E2958A} = {D1220996-3572-4C7A-9DEE-1875A8CE950C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3FAEFDF5-E4C9-46CC-845E-A58925F6E5A9}

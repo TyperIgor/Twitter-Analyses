@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="1.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TwitterAnalysis.Infrastructure.Data\TwitterAnalysis.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\TwitterAnalysis.Infrastructure.Service.Gateway\TwitterAnalysis.Infrastructure.Service.Gateway.csproj" />
+  </ItemGroup>
+
+</Project>

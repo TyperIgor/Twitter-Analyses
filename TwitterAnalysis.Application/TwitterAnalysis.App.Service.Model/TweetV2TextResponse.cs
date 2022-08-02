@@ -1,15 +1,12 @@
 ﻿using Microsoft.ML.Data;
-using System.Collections.Generic;
 
 namespace TwitterAnalysis.App.Service.Model
 {
-    public class TweetData
+    public class TweetV2TextResponse
     {
-        public string TwitterUser { get; set; }
+        public string User { get; set; }
 
         [LoadColumnName("Label")]
         public string Text { get; set; }
-
-        public bool TweetRacistResult { get; set; }
     }
 }

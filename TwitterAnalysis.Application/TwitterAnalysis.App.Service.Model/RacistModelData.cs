@@ -7,9 +7,9 @@ namespace TwitterAnalysis.App.Service.Model
     {
         [LoadColumnName("Label")]
         [LoadColumn(0)]
-        public string Text  { get; set; }
+        public bool ActiveRacist { get; set; }
 
         [LoadColumn(1)]
-        public bool ActiveRacist { get; set; }
+        public string Text  { get; set; }
     }
 }

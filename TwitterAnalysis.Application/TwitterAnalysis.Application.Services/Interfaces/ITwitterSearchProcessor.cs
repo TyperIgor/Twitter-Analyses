@@ -5,6 +5,6 @@ namespace TwitterAnalysis.Application.Services.Interfaces
 {
     public interface ITwitterSearchProcessor
     {
-        Task<TweetResponse> ProcessSearch(string query);
+        Task<TweetResponse> ProcessSearchByQuery(string query);
     }
 }

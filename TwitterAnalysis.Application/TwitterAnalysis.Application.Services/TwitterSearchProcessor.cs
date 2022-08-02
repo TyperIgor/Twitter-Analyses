@@ -16,7 +16,7 @@ namespace TwitterAnalysis.Application.Services
             _twitterSearchQuery = twitterSearchQuery;
         }
 
-        public async Task<TweetResponse> ProcessSearch(string query)
+        public async Task<TweetResponse> ProcessSearchByQuery(string query)
         {
             try
             {

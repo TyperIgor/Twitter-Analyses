@@ -10,27 +10,19 @@ namespace TwitterAnalysis.App.Services
     public class TwitterSearchService : ITwitterSearchQuery
     {
         private readonly ITwitterServiceGateway _twitterServiceGateway;
-
-        private readonly ITweetRepository _tweetRepository;
-
         private readonly IMachineLearningProcessor _machineLearningProcessor;
 
-        public TwitterSearchService(ITwitterServiceGateway twitterServiceGateway, ITweetRepository tweetRepository, IMachineLearningProcessor machineLearningProcessor)
+        public TwitterSearchService(ITwitterServiceGateway twitterServiceGateway,IMachineLearningProcessor machineLearningProcessor)
         {
             _twitterServiceGateway = twitterServiceGateway;
-            _tweetRepository = tweetRepository;
             _machineLearningProcessor = machineLearningProcessor;
         }
 
         public async Task<IEnumerable<TweetData>> GetTweetBySearch(string query)
         {
-            var trainingData = await _tweetRepository.GetRacistsPhrasesToModelEnter();
-
             var tweetData = await _twitterServiceGateway.GetTweetBySearch(query);
 
-            _machineLearningProcessor.BuildInputData(trainingData, tweetData);
-
-            return tweetData;
+            return await _machineLearningProcessor.BuildInputData(tweetData);
         }
     }
 }

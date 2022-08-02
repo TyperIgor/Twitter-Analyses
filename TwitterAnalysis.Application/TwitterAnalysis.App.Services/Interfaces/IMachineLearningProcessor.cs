@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using TwitterAnalysis.App.Service.Model;
 using Microsoft.ML;
+using System.Threading.Tasks;
 
 namespace TwitterAnalysis.App.Services.Interfaces
 {
     public interface IMachineLearningProcessor
     {
-        void BuildInputData(IEnumerable<RacistModelData> modelDatas , IEnumerable<TweetData> tweetDatas);
+        Task<IList<TweetData>> BuildInputData(IList<TweetV2TextResponse> tweetDatas);
     }
 }

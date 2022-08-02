@@ -3,20 +3,14 @@ using System.Threading.Tasks;
 using Dapper;
 using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.Infrastructure.Data.Interfaces;
+using TwitterAnalysis.Infrastructure.Data.Query;
 
 namespace TwitterAnalysis.Infrastructure.Data.Repository
 {
     public class TweetRepository : Repository, ITweetRepository
     {
-        public TweetRepository(IDbContext dbContext) : base(dbContext)
-        {
-        }
+        public TweetRepository(IDbContext dbContext) : base(dbContext) { }
 
-        public async Task<IEnumerable<RacistModelData>> GetRacistsPhrasesToModelEnter()
-        {
-            var result = await _npgsqlConnection.QueryAsync<RacistModelData>("select * from \"RacistComment\" ");
-
-            return result;
-        }
+        public async Task<IEnumerable<RacistModelData>> GetRacistsPhrasesToModelEnter() => await _npgsqlConnection.QueryAsync<RacistModelData>(TweetQuery.TweetRacistModelQuery);
     }
 }

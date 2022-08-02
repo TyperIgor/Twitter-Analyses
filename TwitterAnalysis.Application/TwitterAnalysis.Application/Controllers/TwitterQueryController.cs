@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using TwitterAnalysis.Application.Messages.Request;
 using TwitterAnalysis.Application.Messages.Response;
 using TwitterAnalysis.Application.Services.Interfaces;
+using System.Net;
+using System;
 
 namespace TwitterAnalysis.Application.Controllers
 {
@@ -18,17 +20,21 @@ namespace TwitterAnalysis.Application.Controllers
             _twitterSearchProcessor = twitterSearchProcessor;
         }
 
-        [HttpGet]
-        public Task GetById()
+        [HttpGet("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public Task<IActionResult> GetByUserId(Guid id)
         {
-            return Task.FromResult(0);
+
+            return null;
         }
 
         [HttpPost()]
-        [ProducesResponseType(200)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<TweetResponse>> PostQuery([FromBody] QueryRequest request)
         {
-            var result = await _twitterSearchProcessor.ProcessSearch(request.Query);
+            var result = await _twitterSearchProcessor.ProcessSearchByQuery(request.Query);
 
             return Ok(result);
         }

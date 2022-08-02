@@ -7,9 +7,6 @@ namespace TwitterAnalysis.Infrastructure.Data.Repository
     {
         protected readonly NpgsqlConnection _npgsqlConnection;
 
-        public Repository(IDbContext dbContext)
-        {
-            _npgsqlConnection = dbContext.GetConnection();
-        }
+        public Repository(IDbContext dbContext) => _npgsqlConnection = dbContext.GetConnection(); 
     }
 }

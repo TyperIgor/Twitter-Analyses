@@ -1,7 +1,9 @@
 ﻿using Microsoft.ML;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.App.Services.Interfaces;
+using TwitterAnalysis.Infrastructure.Data.Interfaces;
 
 namespace TwitterAnalysis.App.Services.ML.Net_Processor
 {
@@ -9,16 +11,60 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
     {
         public MLContext MlContext { get; set; } = new MLContext();
 
-        public void BuildInputData(IEnumerable<RacistModelData> modelDatas, IEnumerable<TweetData> tweetDatas)
+        private readonly ITweetRepository _tweetRepository;
+
+        public MachineLearningProcessor(ITweetRepository tweetRepository)
         {
-            var dataview = MlContext.Data.LoadFromEnumerable(modelDatas);
+            _tweetRepository = tweetRepository;
+        }
+
+        public async Task<IList<TweetData>> BuildInputData(IList<TweetV2TextResponse> tweetDatas)
+        {
+            var modelsDatas = await _tweetRepository.GetRacistsPhrasesToModelEnter();
+
+            var inputModel = ImplementAlgorithmTrainingFromCollection(modelsDatas);
+
+            var dataViewAnalyse = MlContext.Data.LoadFromEnumerable(tweetDatas);
+
+            var prediction = inputModel.Transform(dataViewAnalyse);
+
+            //var metrics = MlContext.BinaryClassification.Evaluate(prediction, "Text");
+
+            return GenerateAnalyseTextFromTweet(tweetDatas, inputModel, MlContext);
+        }
+
+        private ITransformer ImplementAlgorithmTrainingFromCollection(IEnumerable<RacistModelData> racistModels)
+        {
+            var dataview = MlContext.Data.LoadFromEnumerable(racistModels);
 
             var pipeline = MlContext.Transforms.Text.FeaturizeText("Features", "Text")
                 .Append(MlContext.BinaryClassification.Trainers.SdcaLogisticRegression(featureColumnName: "Features", labelColumnName: "ActiveRacist"));
 
-            var model = pipeline.Fit(dataview);
+            return pipeline.Fit(dataview);
+        }
 
-            var dataViewAnalyse = MlContext.Data.LoadFromEnumerable(tweetDatas);
+        private static IList<TweetData> GenerateAnalyseTextFromTweet(IList<TweetV2TextResponse> tweets, ITransformer model, MLContext mLContext)
+        {
+            PredictionEngine<RacistModelData, TweetClassification> predictEngine = mLContext.Model.CreatePredictionEngine<RacistModelData, TweetClassification>(model);
+
+            var modelData = new RacistModelData();
+            var tweetData = new List<TweetData>();
+
+            foreach (var twt in tweets)
+            {
+                modelData.Text = twt.Text;
+
+                var feedback = predictEngine.Predict(modelData);
+
+                tweetData.Add(new TweetData()
+                {
+                    TwitterUser = twt.User,
+                    Text = twt.Text,
+                    TweetRacistResult = feedback.WasRacist
+                });
+            }
+
+            return tweetData;
         }
     }
 }

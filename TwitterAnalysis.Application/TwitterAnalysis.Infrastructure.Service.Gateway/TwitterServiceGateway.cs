@@ -20,13 +20,13 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
             _configuration = configuration; 
         }
 
-        public async Task<IEnumerable<TweetData>> GetTweetBySearch(string query)
+        public async Task<IList<TweetV2TextResponse>> GetTweetBySearch(string query)
         {
             try
             {
                 ITwitterClient tweetClient = Authenticate();
 
-                var searchParameters = new SearchTweetsV2Parameters(query) { PageSize = 100 };
+                var searchParameters = new SearchTweetsV2Parameters(query) { PageSize = 10 };
 
                 var response = await tweetClient.SearchV2.SearchTweetsAsync(searchParameters);
 
@@ -39,22 +39,22 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
             }
         }
 
-        private static IEnumerable<TweetData> MapperTweetsResponse(SearchTweetsV2Response response)
+        private static IList<TweetV2TextResponse> MapperTweetsResponse(SearchTweetsV2Response response)
         {
-            var TweetData = new List<TweetData>();
+            var tweetV2Text = new List<TweetV2TextResponse>();
 
             foreach (var res in response.Tweets)
             {
-                var tweet = new TweetData
+                var tweet = new TweetV2TextResponse
                 {
-                    TwitterUser = res.AuthorId,
+                    User = res.AuthorId,
                     Text = res.Text
                 };
 
-                TweetData.Add(tweet);
+                tweetV2Text.Add(tweet);
             }
 
-            return TweetData;
+            return tweetV2Text;
         }
 
         private TwitterClient Authenticate()

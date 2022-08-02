@@ -9,11 +9,11 @@ namespace TwitterAnalysis.Application.Validations
         {
             RuleFor(q => q.Query)
                 .NotEmpty()
-                    .WithMessage("Field Name must not be null or empty")
+                    .WithMessage("Field query must not be null or empty")
                 .MaximumLength(100)
-                    .WithMessage("Field Name must be less than 50 ")
+                    .WithMessage("Field query must be less than 50 ")
                 .MinimumLength(5)
-                    .WithMessage("Field Name must have 5 legth at minimum");
+                    .WithMessage("Field query must have 5 legth at minimum");
         }
 
     }

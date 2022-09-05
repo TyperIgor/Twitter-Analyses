@@ -28,7 +28,7 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 
             var prediction = inputModel.Transform(dataViewAnalyse);
 
-            //var metrics = MlContext.BinaryClassification.Evaluate(prediction, "Text");
+            //var metrics = MlContext.BinaryClassification.EvaluateNonCalibrated(prediction, "Text");
 
             return GenerateAnalyseTextFromTweet(tweetDatas, inputModel, MlContext);
         }

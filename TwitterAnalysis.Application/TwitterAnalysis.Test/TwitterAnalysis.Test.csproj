@@ -25,4 +25,9 @@
     <ProjectReference Include="..\TwitterAnalysis.Application\TwitterAnalysis.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ApplicationTest\" />
+    <Folder Include="ServiceTest\" />
+  </ItemGroup>
+
 </Project>

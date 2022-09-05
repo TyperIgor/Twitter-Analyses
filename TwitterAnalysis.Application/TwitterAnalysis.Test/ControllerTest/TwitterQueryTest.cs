@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 using TwitterAnalysis.Application.Services.Interfaces;
 using TwitterAnalysis.App.Services.Interfaces;
-using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.Application.Services;
 using TwitterAnalysis.Application.Messages.Response;
 using Moq;
@@ -45,7 +43,6 @@ namespace TwitterAnalysis.Test.ControllerTest
 
             //Act
             var result = twitterSearchProcessor.ProcessSearchByQuery(It.IsAny<string>());
-
 
             //Assert
             Assert.IsType<Task<TweetResponse>>(result);

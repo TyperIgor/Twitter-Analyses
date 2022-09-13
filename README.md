@@ -17,10 +17,9 @@
 The project is still on development... 
 
 - [x] Task 1 : Authenticate on twitter with bearer token
-- [x] Task 2 :
-- [ ] 
-- [ ] 
-- [ ] 
+- [x] Task 2 : Filter racists comments on tweet
+- [x] Task 3 : Return racists coments and classify them with machine learning algorith
+- [x] Task 4 : Generate response within racial classfication  
 
 ## 💻 Preconditions
 
@@ -28,25 +27,14 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 * Você instalou a versão mais recente do .Net (5.0 or 6.0)
 * Você tem uma máquina  Windows / Linux / Mac. Todos são compatíveis
-* Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
 
 ## 🚀 Getting Start <TwitterAnalysis>
 
 Para instalar o TwitterAnalysis Application, siga estas etapas:
 
-Linux e macOS:
-```
-<comando_de_instalação>
-```
+## ☕ Usando Twitter Analysis application
 
-Windows:
-```
-<comando_de_instalação>
-```
-
-## ☕ Usando <nome_do_projeto>
-
-Para usar <nome_do_projeto>, siga estas etapas:
+Para usar Twitter Analysis applicatio, siga estas etapas:
 
 ```
 <exemplo_de_uso>

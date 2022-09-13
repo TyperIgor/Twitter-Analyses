@@ -23,10 +23,10 @@ The project is still on development...
 
 ## 💻 Preconditions
 
-Antes de começar, verifique se você atendeu aos seguintes requisitos:
+before start, make sure you have met the following requirements:
 
-* Você instalou a versão mais recente do .Net (5.0 or 6.0)
-* Você tem uma máquina  Windows / Linux / Mac. Todos são compatíveis
+* You have instaled .Net version (5.0 or 6.0)
+* You operational system is Windows / Linux / Mac. 
 
 ## 🚀 Getting Start <TwitterAnalysis>
 

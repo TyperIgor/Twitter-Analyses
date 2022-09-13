@@ -9,10 +9,10 @@ namespace TwitterAnalysis.Application.Mapper
     {
         public static TweetResponse MapperTweetResponseModel(IEnumerable<TweetData> tweets)
         {
-            var tweetResponse = new TweetResponse
-            {
+            var tweetResponse = new TweetResponse {
                 Data = tweets,
             };
+
             tweetResponse.StatusMessageTweetOperation(OperationMessageStatusEnum.SucessfullOperation);
 
             return tweetResponse;

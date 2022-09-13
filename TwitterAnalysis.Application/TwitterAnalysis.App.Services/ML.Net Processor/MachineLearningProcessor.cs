@@ -24,12 +24,6 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 
             var inputModel = ImplementAlgorithmTrainingFromCollection(modelsDatas);
 
-            var dataViewAnalyse = MlContext.Data.LoadFromEnumerable(tweetDatas);
-
-            var prediction = inputModel.Transform(dataViewAnalyse);
-
-            //var metrics = MlContext.BinaryClassification.EvaluateNonCalibrated(prediction, "Text");
-
             return GenerateAnalyseTextFromTweet(tweetDatas, inputModel, MlContext);
         }
 
@@ -45,7 +39,7 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 
         private static IList<TweetData> GenerateAnalyseTextFromTweet(IList<TweetV2TextResponse> tweets, ITransformer model, MLContext mLContext)
         {
-            PredictionEngine<RacistModelData, TweetClassification> predictEngine = mLContext.Model.CreatePredictionEngine<RacistModelData, TweetClassification>(model);
+            var predictEngine = mLContext.Model.CreatePredictionEngine<RacistModelData, TweetClassification>(model);
 
             var modelData = new RacistModelData();
             var tweetData = new List<TweetData>();

@@ -6,7 +6,7 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/TyperIgor/README-template?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/TyperIgor/README-template?style=for-the-badge)
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/TyperIgor/README-template?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/TyperIgor/README-template?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/TyperIgor/Twitter-Analyses-TCC/pulls?style=for-the-badge)
 
 ![image](https://user-images.githubusercontent.com/46224297/174506562-95ec8650-ab1a-4e43-9b49-7a037bb5bc82.png)
 

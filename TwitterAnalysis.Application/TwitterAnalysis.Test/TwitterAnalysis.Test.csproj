@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TwitterAnalysis.Application.Services\TwitterAnalysis.Application.Services.csproj" />
-    <ProjectReference Include="..\TwitterAnalysis.Application\TwitterAnalysis.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

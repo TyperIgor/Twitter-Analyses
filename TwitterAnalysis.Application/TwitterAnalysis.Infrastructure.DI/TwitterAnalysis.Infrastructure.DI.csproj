@@ -1,18 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TwitterAnalysis.Application.Services\TwitterAnalysis.Application.Services.csproj" />
-    <ProjectReference Include="..\TwitterAnalysis.Infrastructure.DI\TwitterAnalysis.Infrastructure.DI.csproj" />
   </ItemGroup>
 
 </Project>

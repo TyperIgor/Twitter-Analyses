@@ -14,7 +14,7 @@ namespace TwitterAnalysis.Application.Swagger
                 {
                     Title = "Twitter Analysis API ",
                     Version = "v1",
-                    Description = "Api that provides racists tweets",
+                    Description = "Api that provides classified racists tweets",
                     Contact = new OpenApiContact()
                     {
                         Name = "Igor Lima",

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace TwitterAnalysis.Worker.Abstract
 {
-    internal class BackgroundTask
+    public class BackgroundTask
     {
+        private readonly PeriodicTimer periodcTimer;
     }
 }

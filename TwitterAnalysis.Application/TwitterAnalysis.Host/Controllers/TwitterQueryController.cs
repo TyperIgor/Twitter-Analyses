@@ -19,15 +19,6 @@ namespace TwitterAnalysis.Application.Controllers
             _twitterSearchProcessor = twitterSearchProcessor;
         }
 
-        [HttpGet("{id}")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public Task<IActionResult> GetByUserId(Guid id)
-        {
-
-            return null;
-        }
-
         [HttpPost()]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

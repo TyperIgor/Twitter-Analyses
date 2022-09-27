@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Models.V2;
+using Tweetinvi.Parameters;
 using Tweetinvi.Parameters.V2;
 using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.Infrastructure.Service.Gateway.Interfaces;
@@ -20,15 +21,15 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
             _configuration = configuration; 
         }
 
-        public async Task<IList<TweetV2TextResponse>> GetTweetBySearch(string query)
+        public async Task<IList<TweetTextResponse>> GetTweetBySearch(string query)
         {
             try
             {
                 ITwitterClient tweetClient = Authenticate();
 
-                var searchParameters = new SearchTweetsV2Parameters(query) { PageSize = 10 };
+                var searchParameters = new SearchTweetsParameters(query) { PageSize = 10, SearchType = SearchResultType.Recent };
 
-                var response = await tweetClient.SearchV2.SearchTweetsAsync(searchParameters);
+                var response = await tweetClient.Search.SearchTweetsAsync(searchParameters);
 
                 return MapperTweetsResponse(response);
             }
@@ -39,15 +40,15 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
             }
         }
 
-        private static IList<TweetV2TextResponse> MapperTweetsResponse(SearchTweetsV2Response response)
+        private static IList<TweetTextResponse> MapperTweetsResponse(ITweet[] response)
         {
-            var tweetV2Text = new List<TweetV2TextResponse>();
+            var tweetV2Text = new List<TweetTextResponse>();
 
-            foreach (var res in response.Tweets)
+            foreach (var res in response)
             {
-                var tweet = new TweetV2TextResponse
+                var tweet = new TweetTextResponse
                 {
-                    User = res.AuthorId,
+                    User = res.CreatedBy.Name,
                     Text = res.Text
                 };
 

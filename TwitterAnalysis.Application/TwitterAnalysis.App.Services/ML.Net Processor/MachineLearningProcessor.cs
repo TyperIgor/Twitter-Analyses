@@ -18,7 +18,7 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
             _tweetRepository = tweetRepository;
         }
 
-        public async Task<IList<TweetData>> BuildInputData(IList<TweetV2TextResponse> tweetDatas)
+        public async Task<IList<TweetData>> BuildInputData(IList<TweetTextResponse> tweetDatas)
         {
             var modelsDatas = await _tweetRepository.GetRacistsPhrasesToModelEnter();
 
@@ -37,7 +37,7 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
             return pipeline.Fit(dataview);
         }
 
-        private static IList<TweetData> GenerateAnalyseTextFromTweet(IList<TweetV2TextResponse> tweets, ITransformer model, MLContext mLContext)
+        private static IList<TweetData> GenerateAnalyseTextFromTweet(IList<TweetTextResponse> tweets, ITransformer model, MLContext mLContext)
         {
             var predictEngine = mLContext.Model.CreatePredictionEngine<RacistModelData, TweetClassification>(model);
 

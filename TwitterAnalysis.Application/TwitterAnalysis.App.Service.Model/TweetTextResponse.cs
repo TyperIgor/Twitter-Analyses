@@ -2,7 +2,7 @@
 
 namespace TwitterAnalysis.App.Service.Model
 {
-    public class TweetV2TextResponse
+    public class TweetTextResponse
     {
         public string User { get; set; }
 

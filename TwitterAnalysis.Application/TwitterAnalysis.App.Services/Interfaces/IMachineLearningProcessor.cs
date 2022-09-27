@@ -8,6 +8,6 @@ namespace TwitterAnalysis.App.Services.Interfaces
 {
     public interface IMachineLearningProcessor
     {
-        Task<IList<TweetData>> BuildInputData(IList<TweetV2TextResponse> tweetDatas);
+        Task<IList<TweetData>> BuildInputData(IList<TweetTextResponse> tweetDatas);
     }
 }

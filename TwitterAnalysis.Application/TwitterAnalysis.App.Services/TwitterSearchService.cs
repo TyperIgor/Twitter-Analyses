@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.App.Services.Interfaces;
-using TwitterAnalysis.Infrastructure.Data.Interfaces;
 using TwitterAnalysis.Infrastructure.Service.Gateway.Interfaces;
 
 namespace TwitterAnalysis.App.Services

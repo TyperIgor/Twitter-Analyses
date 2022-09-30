@@ -21,7 +21,7 @@ namespace TwitterAnalysis.App.Services
         {
             var tweetData = await _twitterServiceGateway.GetTweetBySearch(query);
 
-            return await _machineLearningProcessor.BuildInputData(tweetData);
+            return await _machineLearningProcessor.BuildBinaryAlgorithmClassificationToTweets(tweetData);
         }
     }
 }

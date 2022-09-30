@@ -18,7 +18,7 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
             _tweetRepository = tweetRepository;
         }
 
-        public async Task<IList<TweetData>> BuildInputData(IList<TweetTextResponse> tweetDatas)
+        public async Task<IList<TweetData>> BuildBinaryAlgorithmClassificationToTweets(IList<TweetTextResponse> tweetDatas)
         {
             var modelsDatas = await _tweetRepository.GetRacistsPhrasesToModelEnter();
 

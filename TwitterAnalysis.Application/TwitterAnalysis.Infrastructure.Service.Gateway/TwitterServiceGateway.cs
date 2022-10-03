@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tweetinvi;
 using Tweetinvi.Models;
-using Tweetinvi.Models.V2;
 using Tweetinvi.Parameters;
-using Tweetinvi.Parameters.V2;
 using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.Infrastructure.Service.Gateway.Interfaces;
 

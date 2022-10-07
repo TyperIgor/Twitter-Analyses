@@ -23,7 +23,6 @@ namespace TwitterAnalysis.Application.Services
                 var tweet = await _twitterSearchQuery.GetTweetBySearch(query);
 
                 return TweetMapper.MapperTweetResponseModel(tweet);
-
             }
             catch (Exception e)
             {

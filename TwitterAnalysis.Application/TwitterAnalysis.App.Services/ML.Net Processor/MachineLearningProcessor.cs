@@ -10,12 +10,13 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
     public class MachineLearningProcessor : IMachineLearningProcessor
     {
         public MLContext MlContext { get; set; } = new MLContext();
-
         private readonly ITweetRepository _tweetRepository;
+        private readonly IGoogleSheetsApiProcessor _fileSheets;
 
-        public MachineLearningProcessor(ITweetRepository tweetRepository)
+        public MachineLearningProcessor(ITweetRepository tweetRepository, IGoogleSheetsApiProcessor fileSheets)
         {
             _tweetRepository = tweetRepository;
+            _fileSheets = fileSheets;
         }
 
         public async Task<IList<TweetData>> BuildBinaryAlgorithmClassificationToTweets(IList<TweetTextResponse> tweetDatas)
@@ -24,9 +25,18 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 
             var inputModel = ImplementAlgorithmTrainingFromCollection(modelsDatas);
 
+            var trainingCollection = await _fileSheets.ExtractSheetsContent();
+
+            var dataview1 = MlContext.Data.LoadFromEnumerable(trainingCollection);
+
+            var predictions = inputModel.Transform(dataview1);
+
+            var metrics = MlContext.BinaryClassification.Evaluate(predictions, "ActiveRacist");
+
             return GenerateAnalyseTextFromTweet(tweetDatas, inputModel, MlContext);
         }
 
+        #region private methods
         private ITransformer ImplementAlgorithmTrainingFromCollection(IEnumerable<RacistModelData> racistModels)
         {
             var dataview = MlContext.Data.LoadFromEnumerable(racistModels);
@@ -60,5 +70,6 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 
             return tweetData;
         }
+        #endregion
     }
 }

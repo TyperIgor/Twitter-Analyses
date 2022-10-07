@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.FeatureManagement;
 using TwitterAnalysis.App.Services;
+using TwitterAnalysis.App.Services.FileProcessor;
 using TwitterAnalysis.App.Services.Interfaces;
 using TwitterAnalysis.App.Services.ML.Net_Processor;
 using TwitterAnalysis.Application.Services;
@@ -14,7 +17,7 @@ namespace TwitterAnalysis.Infrastructure.DI
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddDependencies(this IServiceCollection services)
+        public static IServiceCollection AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<ITwitterSearchProcessor, TwitterSearchProcessor>();
             services.AddScoped<IMachineLearningProcessor, MachineLearningProcessor>();
@@ -23,6 +26,10 @@ namespace TwitterAnalysis.Infrastructure.DI
             services.AddScoped<ITwitterServiceGateway, TwitterServiceGateway>();
             services.AddScoped<IDbContext, DbContext>();
             services.AddScoped<ITweetRepository, TweetRepository>();
+
+            services.AddFeatureManagement(configuration.GetSection("FlagConfig"));
+
+            services.AddScoped<IGoogleSheetsApiProcessor, GoogleSheetsProcessor>();
 
             return services;
         }

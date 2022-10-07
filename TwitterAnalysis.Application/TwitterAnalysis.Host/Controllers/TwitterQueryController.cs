@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using TwitterAnalysis.Application.Messages.Request;
 using TwitterAnalysis.Application.Messages.Response;
 using TwitterAnalysis.Application.Services.Interfaces;

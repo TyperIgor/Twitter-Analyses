@@ -21,17 +21,9 @@ namespace TwitterAnalysis.App.Services
 
         public async Task<TweetsResults> GetTweetBySearch(string query)
         {
-            var stopWatch = new Stopwatch();
-
-            stopWatch.Start();
             var tweetData = await _twitterServiceGateway.GetTweetBySearch(query);
 
-            var res = await _machineLearningProcessor.BuildBinaryAlgorithmClassificationToTweets(tweetData);
-            stopWatch.Stop();
-
-            Console.WriteLine($"Performance total: {stopWatch.Elapsed}, milliseconds: {stopWatch.ElapsedMilliseconds} ");
-
-            return res;
+            return await _machineLearningProcessor.BuildBinaryAlgorithmClassificationToTweets(tweetData);
         }
     }
 }

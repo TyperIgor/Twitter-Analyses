@@ -43,10 +43,8 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
         #region private methods
         private static IList<TweetTextResponse> MapperTweetsResponse(ITweet[] response)
         {
-            var stopwatch = new Stopwatch();
             var tweetV2Text = new List<TweetTextResponse>();
 
-            stopwatch.Start();
             foreach (var res in response)
             {
                 var tweet = new TweetTextResponse
@@ -57,9 +55,6 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
 
                 tweetV2Text.Add(tweet);
             }
-            stopwatch.Stop();
-
-            Console.WriteLine($"Performance {stopwatch.Elapsed} , milliseconds {stopwatch.ElapsedMilliseconds}");
 
             return tweetV2Text;
         }

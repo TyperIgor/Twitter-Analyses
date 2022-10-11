@@ -10,7 +10,7 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 {
     public class MachineLearningProcessor : IMachineLearningProcessor
     {
-        public MLContext MlContext { get; set; } = new MLContext();
+        MLContext MlContext { get; set; } = new MLContext();
         private readonly ITweetRepository _tweetRepository;
         private readonly IGoogleSheetsApiProcessor _sheetsApi;
 
@@ -28,9 +28,9 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 
             var modelsDatas = await _tweetRepository.GetRacistsPhrasesToModelEnter();
 
-            var dataview1 = MlContext.Data.LoadFromEnumerable(modelsDatas);
+            var dataViewFromModels = MlContext.Data.LoadFromEnumerable(modelsDatas);
 
-            var predictions = inputModel.Transform(dataview1);
+            var predictions = inputModel.Transform(dataViewFromModels);
 
             var metrics = MlContext.BinaryClassification.Evaluate(predictions, "ActiveRacist");
 

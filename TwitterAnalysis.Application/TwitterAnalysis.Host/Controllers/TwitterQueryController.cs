@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using TwitterAnalysis.Application.Messages.Request;
 using TwitterAnalysis.Application.Messages.Response;
 using TwitterAnalysis.Application.Services.Interfaces;
@@ -18,6 +17,13 @@ namespace TwitterAnalysis.Application.Controllers
         {
             _twitterSearchProcessor = twitterSearchProcessor;
         }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok("Just Testing");
+        }
+
 
         [HttpPost()]
         [ProducesResponseType((int)HttpStatusCode.OK)]

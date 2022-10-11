@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Dapper;
+using System;
+using System.Data;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Dapper;
 using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.Infrastructure.Data.Interfaces;
 using TwitterAnalysis.Infrastructure.Data.Query;
@@ -11,6 +13,24 @@ namespace TwitterAnalysis.Infrastructure.Data.Repository
     {
         public TweetRepository(IDbContext dbContext) : base(dbContext) { }
 
-        public async Task<IEnumerable<RacistModelData>> GetRacistsPhrasesToModelEnter() => await _npgsqlConnection.QueryAsync<RacistModelData>(TweetQuery.TweetRacistModelQuery);
+        public async Task<IEnumerable<RacistModelData>> GetRacistsPhrasesToModelEnter()
+        {
+            try
+            {
+                return await _npgsqlConnection.QueryAsync<RacistModelData>(TweetQuery.TweetRacistModelQuery);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                await _npgsqlConnection.CloseAsync();
+
+                if (_npgsqlConnection.State == ConnectionState.Closed)
+                    Dispose();
+            }
+        }
     }
 }

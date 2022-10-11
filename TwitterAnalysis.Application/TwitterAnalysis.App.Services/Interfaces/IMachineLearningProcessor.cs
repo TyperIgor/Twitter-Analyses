@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using TwitterAnalysis.App.Service.Model;
-using Microsoft.ML;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using TwitterAnalysis.App.Service.Model;
 
 namespace TwitterAnalysis.App.Services.Interfaces
 {
     public interface IMachineLearningProcessor
     {
-        Task<IList<TweetData>> BuildBinaryAlgorithmClassificationToTweets(IList<TweetTextResponse> tweetDatas);
+        Task<TweetsResults> BuildBinaryAlgorithmClassificationToTweets(IList<TweetTextResponse> tweetDatas);
     }
 }

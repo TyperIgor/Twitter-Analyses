@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tweetinvi;
@@ -38,6 +39,8 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
             }
         }
 
+
+        #region private methods
         private static IList<TweetTextResponse> MapperTweetsResponse(ITweet[] response)
         {
             var tweetV2Text = new List<TweetTextResponse>();
@@ -60,5 +63,6 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
         {
             return new TwitterClient(new ConsumerOnlyCredentials { BearerToken = _configuration.GetSection("BearerToken").Value });
         }
+        #endregion
     }
 }

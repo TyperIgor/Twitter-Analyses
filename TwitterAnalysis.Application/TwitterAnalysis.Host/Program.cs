@@ -4,9 +4,10 @@ using TwitterAnalysis.Infrastructure.DI;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-builder.Services.AddDependencies();
+
+builder.Services.AddDependencies(builder.Configuration);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerServices();
 

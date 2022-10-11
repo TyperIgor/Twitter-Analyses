@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.App.Services.Interfaces;
@@ -11,13 +12,14 @@ namespace TwitterAnalysis.App.Services
         private readonly ITwitterServiceGateway _twitterServiceGateway;
         private readonly IMachineLearningProcessor _machineLearningProcessor;
 
-        public TwitterSearchService(ITwitterServiceGateway twitterServiceGateway,IMachineLearningProcessor machineLearningProcessor)
+        public TwitterSearchService(ITwitterServiceGateway twitterServiceGateway, 
+                                    IMachineLearningProcessor machineLearningProcessor)
         {
             _twitterServiceGateway = twitterServiceGateway;
-            _machineLearningProcessor = machineLearningProcessor;
+            _machineLearningProcessor = machineLearningProcessor;  
         }
 
-        public async Task<IEnumerable<TweetData>> GetTweetBySearch(string query)
+        public async Task<TweetsResults> GetTweetBySearch(string query)
         {
             var tweetData = await _twitterServiceGateway.GetTweetBySearch(query);
 

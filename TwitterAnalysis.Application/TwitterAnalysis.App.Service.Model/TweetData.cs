@@ -10,6 +10,6 @@ namespace TwitterAnalysis.App.Service.Model
         [LoadColumnName("Label")]
         public string Text { get; set; }
 
-        public bool TweetRacistResult { get; set; }
+        public bool TweetRacistResult { get; set; } = new bool();
     }
 }

@@ -5,8 +5,15 @@ namespace TwitterAnalysis.App.Service.Model
 {
     public class TweetsResults
     {
-        public IEnumerable<TweetData> Tweets { get; set; }
+        public TweetsResults()
+        {
+            AlgorithmMetricsSummary = new AlgorithmMetricsSummary();
 
-        public AlgorithmMetricsSummary AlgorithmMetricsSummary { get; set; }
+            Tweets = new List<TweetData>();
+        }
+
+        public List<TweetData> Tweets { get; set; } 
+
+        public AlgorithmMetricsSummary AlgorithmMetricsSummary { get; set; } 
     }
 }

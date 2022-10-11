@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.FeatureManagement;
 using TwitterAnalysis.App.Services;
 using TwitterAnalysis.App.Services.FileProcessor;
 using TwitterAnalysis.App.Services.Interfaces;
@@ -26,8 +25,6 @@ namespace TwitterAnalysis.Infrastructure.DI
             services.AddScoped<ITwitterServiceGateway, TwitterServiceGateway>();
             services.AddScoped<IDbContext, DbContext>();
             services.AddScoped<ITweetRepository, TweetRepository>();
-
-            services.AddFeatureManagement(configuration.GetSection("FlagConfig"));
 
             services.AddScoped<IGoogleSheetsApiProcessor, GoogleSheetsProcessor>();
 

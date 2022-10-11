@@ -12,7 +12,7 @@ namespace TwitterAnalysis.Application.Messages.Response
         public string Message { get; set; }
 
         [JsonPropertyName("data")]
-        public IEnumerable<TweetData> Data { get; set; }
+        public TweetsResults Data { get; set; }
 
         public TweetResponse StatusMessageTweetOperation(OperationMessageStatusEnum statusEnum)
         {

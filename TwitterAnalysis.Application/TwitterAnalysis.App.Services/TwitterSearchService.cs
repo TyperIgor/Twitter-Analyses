@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.App.Services.Interfaces;
 using TwitterAnalysis.Infrastructure.Service.Gateway.Interfaces;
-using Microsoft.FeatureManagement;
 
 namespace TwitterAnalysis.App.Services
 {
@@ -11,23 +11,27 @@ namespace TwitterAnalysis.App.Services
     {
         private readonly ITwitterServiceGateway _twitterServiceGateway;
         private readonly IMachineLearningProcessor _machineLearningProcessor;
-        private readonly IGoogleSheetsApiProcessor _fileSheets;
-        private readonly IFeatureManager _manager;
 
         public TwitterSearchService(ITwitterServiceGateway twitterServiceGateway, 
-                                    IMachineLearningProcessor machineLearningProcessor, 
-                                    IGoogleSheetsApiProcessor fileSheets)
+                                    IMachineLearningProcessor machineLearningProcessor)
         {
             _twitterServiceGateway = twitterServiceGateway;
-            _machineLearningProcessor = machineLearningProcessor;
-            _fileSheets = fileSheets;   
+            _machineLearningProcessor = machineLearningProcessor;  
         }
 
-        public async Task<IEnumerable<TweetData>> GetTweetBySearch(string query)
+        public async Task<TweetsResults> GetTweetBySearch(string query)
         {
+            var stopWatch = new Stopwatch();
+
+            stopWatch.Start();
             var tweetData = await _twitterServiceGateway.GetTweetBySearch(query);
 
-            return await _machineLearningProcessor.BuildBinaryAlgorithmClassificationToTweets(tweetData);
+            var res = await _machineLearningProcessor.BuildBinaryAlgorithmClassificationToTweets(tweetData);
+            stopWatch.Stop();
+
+            Console.WriteLine($"Performance total: {stopWatch.Elapsed}, milliseconds: {stopWatch.ElapsedMilliseconds} ");
+
+            return res;
         }
     }
 }

@@ -61,7 +61,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Host", "Twi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Dependency Injection", "3. Dependency Injection", "{A297CBA3-6F13-427A-B08B-32916CE142A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterAnalysis.Infrastructure.DI", "TwitterAnalysis.Infrastructure.DI\TwitterAnalysis.Infrastructure.DI.csproj", "{553C6C46-AB4F-412D-98AA-FD74DA54C91C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Infrastructure.DI", "TwitterAnalysis.Infrastructure.DI\TwitterAnalysis.Infrastructure.DI.csproj", "{553C6C46-AB4F-412D-98AA-FD74DA54C91C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -11,5 +11,8 @@ namespace TwitterAnalysis.App.Service.Model
 
         public double NegativePrecision { get; set; }
 
+        public double AreaUnderCurve { get; set; }
+
+        public double F1Score { get; set; }
     }
 }

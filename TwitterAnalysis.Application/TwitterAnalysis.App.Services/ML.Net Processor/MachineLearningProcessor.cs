@@ -1,4 +1,5 @@
 ﻿using Microsoft.ML;
+using Microsoft.ML.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TwitterAnalysis.App.Service.Model;
@@ -11,29 +12,29 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
     {
         public MLContext MlContext { get; set; } = new MLContext();
         private readonly ITweetRepository _tweetRepository;
-        private readonly IGoogleSheetsApiProcessor _fileSheets;
+        private readonly IGoogleSheetsApiProcessor _sheetsApi;
 
-        public MachineLearningProcessor(ITweetRepository tweetRepository, IGoogleSheetsApiProcessor fileSheets)
+        public MachineLearningProcessor(ITweetRepository tweetRepository, IGoogleSheetsApiProcessor sheetsApi)
         {
             _tweetRepository = tweetRepository;
-            _fileSheets = fileSheets;
+            _sheetsApi = sheetsApi;
         }
 
-        public async Task<IList<TweetData>> BuildBinaryAlgorithmClassificationToTweets(IList<TweetTextResponse> tweetDatas)
+        public async Task<TweetsResults> BuildBinaryAlgorithmClassificationToTweets(IList<TweetTextResponse> tweetDatas)
         {
+            var trainingCollection = await _sheetsApi.ExtractSheetsContent();
+
+            var inputModel = ImplementAlgorithmTrainingFromCollection(trainingCollection);
+
             var modelsDatas = await _tweetRepository.GetRacistsPhrasesToModelEnter();
 
-            var inputModel = ImplementAlgorithmTrainingFromCollection(modelsDatas);
-
-            var trainingCollection = await _fileSheets.ExtractSheetsContent();
-
-            var dataview1 = MlContext.Data.LoadFromEnumerable(trainingCollection);
+            var dataview1 = MlContext.Data.LoadFromEnumerable(modelsDatas);
 
             var predictions = inputModel.Transform(dataview1);
 
             var metrics = MlContext.BinaryClassification.Evaluate(predictions, "ActiveRacist");
 
-            return GenerateAnalyseTextFromTweet(tweetDatas, inputModel, MlContext);
+            return GenerateAnalyseTextFromTweet(tweetDatas, inputModel, MlContext, metrics);
         }
 
         #region private methods
@@ -42,17 +43,18 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
             var dataview = MlContext.Data.LoadFromEnumerable(racistModels);
 
             var pipeline = MlContext.Transforms.Text.FeaturizeText("Features", "Text")
+                .AppendCacheCheckpoint(MlContext)
                 .Append(MlContext.BinaryClassification.Trainers.SdcaLogisticRegression(featureColumnName: "Features", labelColumnName: "ActiveRacist"));
 
             return pipeline.Fit(dataview);
         }
 
-        private static IList<TweetData> GenerateAnalyseTextFromTweet(IList<TweetTextResponse> tweets, ITransformer model, MLContext mLContext)
+        private static TweetsResults GenerateAnalyseTextFromTweet(IList<TweetTextResponse> tweets, ITransformer model, MLContext mLContext, BinaryClassificationMetrics metrics)
         {
-            var predictEngine = mLContext.Model.CreatePredictionEngine<RacistModelData, TweetClassification>(model);
+            PredictionEngine<RacistModelData, TweetClassification> predictEngine = mLContext.Model.CreatePredictionEngine<RacistModelData, TweetClassification>(model);
 
             var modelData = new RacistModelData();
-            var tweetData = new List<TweetData>();
+            var tweetResult = new TweetsResults();
 
             foreach (var twt in tweets)
             {
@@ -60,7 +62,7 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 
                 var feedback = predictEngine.Predict(modelData);
 
-                tweetData.Add(new TweetData()
+                tweetResult.Tweets.Add(new TweetData()
                 {
                     TwitterUser = twt.User,
                     Text = twt.Text,
@@ -68,7 +70,16 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
                 });
             }
 
-            return tweetData;
+            tweetResult.AlgorithmMetricsSummary = new AlgorithmMetricsSummary()
+            {
+                Accuracy = metrics.Accuracy,
+                PositivePrecision = metrics.PositivePrecision,
+                NegativePrecision = metrics.NegativePrecision,
+                F1Score = metrics.F1Score,
+                AreaUnderCurve = metrics.AreaUnderRocCurve
+            };
+
+            return tweetResult;
         }
         #endregion
     }

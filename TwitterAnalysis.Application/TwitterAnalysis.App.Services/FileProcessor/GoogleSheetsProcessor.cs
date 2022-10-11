@@ -42,6 +42,8 @@ namespace TwitterAnalysis.App.Services.FileProcessor
             var request = sheets.Spreadsheets.Values.Get(SpreadsheetsId, range);
             var response = await request.ExecuteAsync();
 
+            await Task.Delay(100);
+
             foreach (var item in response.Values)
             {
                 racistPhrases.Add(new RacistModelData()

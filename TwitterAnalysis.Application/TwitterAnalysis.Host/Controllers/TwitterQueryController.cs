@@ -18,6 +18,13 @@ namespace TwitterAnalysis.Application.Controllers
             _twitterSearchProcessor = twitterSearchProcessor;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok("Just Testing");
+        }
+
+
         [HttpPost()]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

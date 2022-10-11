@@ -7,7 +7,7 @@ namespace TwitterAnalysis.Application.Mapper
 {
     public class TweetMapper
     {
-        public static TweetResponse MapperTweetResponseModel(IEnumerable<TweetData> tweets)
+        public static TweetResponse MapperTweetResponseModel(TweetsResults tweets)
         {
             var tweetResponse = new TweetResponse {
                 Data = tweets,

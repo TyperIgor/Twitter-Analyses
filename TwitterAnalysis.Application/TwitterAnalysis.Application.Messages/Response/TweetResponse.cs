@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using TwitterAnalysis.App.Service.Common;
 using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.App.Service.Common.Extension;

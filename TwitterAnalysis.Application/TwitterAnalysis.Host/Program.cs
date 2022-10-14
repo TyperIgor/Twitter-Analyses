@@ -1,3 +1,4 @@
+using TwitterAnalysis.Application.Middleware;
 using TwitterAnalysis.Application.Swagger;
 using TwitterAnalysis.Infrastructure.DI;
 
@@ -18,6 +19,7 @@ var app = builder.Build();
 //{
 //}
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseSwagger();
 app.UseSwaggerUI();
 

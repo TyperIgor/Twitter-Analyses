@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TwitterAnalysis.Application.Middleware\TwitterAnalysis.Application.Middleware.csproj" />
     <ProjectReference Include="..\TwitterAnalysis.Application.Services\TwitterAnalysis.Application.Services.csproj" />
     <ProjectReference Include="..\TwitterAnalysis.Infrastructure.DI\TwitterAnalysis.Infrastructure.DI.csproj" />
   </ItemGroup>

@@ -30,6 +30,8 @@ namespace TwitterAnalysis.Application.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<TweetResponse>> PostQuery([FromBody] QueryRequest request)
         {
+            await Task.Delay(50);
+
             var result = await _twitterSearchProcessor.ProcessSearchByQuery(request.Query);
 
             return Ok(result);

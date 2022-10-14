@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TwitterAnalysis.App.Service.Model
+﻿namespace TwitterAnalysis.App.Service.Model
 {
     public class AlgorithmMetricsSummary
     {

@@ -8,7 +8,6 @@ namespace TwitterAnalysis.App.Service.Model
         public TweetsResults()
         {
             AlgorithmMetricsSummary = new AlgorithmMetricsSummary();
-
             Tweets = new List<TweetData>();
         }
 

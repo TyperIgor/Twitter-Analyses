@@ -63,6 +63,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Dependency Injection", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Infrastructure.DI", "TwitterAnalysis.Infrastructure.DI\TwitterAnalysis.Infrastructure.DI.csproj", "{553C6C46-AB4F-412D-98AA-FD74DA54C91C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Middlewares", "5. Middlewares", "{859BC765-EDA0-4DBB-8695-D241BCE5AB96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterAnalysis.Application.Middleware", "TwitterAnalysis.Application.Middleware\TwitterAnalysis.Application.Middleware.csproj", "{0EA903CA-2463-4429-BAB7-6FDD2E832CD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +129,10 @@ Global
 		{553C6C46-AB4F-412D-98AA-FD74DA54C91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{553C6C46-AB4F-412D-98AA-FD74DA54C91C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{553C6C46-AB4F-412D-98AA-FD74DA54C91C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EA903CA-2463-4429-BAB7-6FDD2E832CD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EA903CA-2463-4429-BAB7-6FDD2E832CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EA903CA-2463-4429-BAB7-6FDD2E832CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EA903CA-2463-4429-BAB7-6FDD2E832CD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,6 +167,8 @@ Global
 		{0CB57F3D-356B-4E46-AA2F-4D00C75C419F} = {13563E11-9FE9-4F1B-BCA9-07B3D133E24A}
 		{A297CBA3-6F13-427A-B08B-32916CE142A9} = {67D3ED35-275F-48F6-8E93-C8315C6101E7}
 		{553C6C46-AB4F-412D-98AA-FD74DA54C91C} = {A297CBA3-6F13-427A-B08B-32916CE142A9}
+		{859BC765-EDA0-4DBB-8695-D241BCE5AB96} = {A7FAFD83-21DE-4092-ADA9-993A4E17D24F}
+		{0EA903CA-2463-4429-BAB7-6FDD2E832CD9} = {859BC765-EDA0-4DBB-8695-D241BCE5AB96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3FAEFDF5-E4C9-46CC-845E-A58925F6E5A9}

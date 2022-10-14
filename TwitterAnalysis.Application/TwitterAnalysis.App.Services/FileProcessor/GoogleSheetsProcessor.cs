@@ -33,7 +33,6 @@ namespace TwitterAnalysis.App.Services.FileProcessor
         }
 
         #region private methods 
-
         private static async Task<IEnumerable<RacistModelData>> GetSheetFileWithRacistsTexts(SheetsService sheets)
         {
             var range = $"{Sheets}!A:B";
@@ -41,8 +40,6 @@ namespace TwitterAnalysis.App.Services.FileProcessor
 
             var request = sheets.Spreadsheets.Values.Get(SpreadsheetsId, range);
             var response = await request.ExecuteAsync();
-
-            await Task.Delay(100);
 
             foreach (var item in response.Values)
             {

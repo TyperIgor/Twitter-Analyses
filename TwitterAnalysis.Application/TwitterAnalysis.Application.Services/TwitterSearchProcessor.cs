@@ -18,17 +18,9 @@ namespace TwitterAnalysis.Application.Services
 
         public async Task<TweetResponse> ProcessSearchByQuery(string query)
         {
-            try
-            {
-                var tweet = await _twitterSearchQuery.GetTweetBySearch(query);
+            var tweet = await _twitterSearchQuery.GetTweetBySearch(query);
 
-                return TweetMapper.MapperTweetResponseModel(tweet);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Error : {e.Message}");
-                throw;
-            }
+            return TweetMapper.MapperTweetResponseModel(tweet);
         }
     }
 }

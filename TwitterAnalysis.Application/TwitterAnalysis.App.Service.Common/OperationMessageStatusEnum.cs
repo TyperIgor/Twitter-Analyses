@@ -7,7 +7,7 @@ namespace TwitterAnalysis.App.Service.Common
         [Description("Completed Sucessfully")]
         SucessfullOperation = 1,
 
-        [Description("Error Ocurred")]
+        [Description("An error was occurred")]
         ErrorFounded = 2,
     }
 }

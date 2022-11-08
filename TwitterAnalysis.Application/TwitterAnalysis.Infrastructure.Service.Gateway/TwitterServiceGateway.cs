@@ -1,23 +1,23 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Options;
 using System;
-using System.Diagnostics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
 using TwitterAnalysis.App.Service.Model;
+using TwitterAnalysis.App.Service.Model.Settings;
 using TwitterAnalysis.Infrastructure.Service.Gateway.Interfaces;
 
 namespace TwitterAnalysis.Infrastructure.Service.Gateway
 {
     public class TwitterServiceGateway : ITwitterServiceGateway
     {
-        private readonly IConfiguration _configuration;
+        private readonly TwitterSettings _twitterSettings;
 
-        public TwitterServiceGateway(IConfiguration configuration)
+        public TwitterServiceGateway(IOptions<TwitterSettings> options)
         {
-            _configuration = configuration; 
+            _twitterSettings = options.Value;
         }
 
         public async Task<IList<TweetTextResponse>> GetTweetBySearch(string query)
@@ -26,7 +26,11 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
             {
                 ITwitterClient tweetClient = Authenticate();
 
-                var searchParameters = new SearchTweetsParameters(query) { PageSize = 10, SearchType = SearchResultType.Recent };
+                var searchParameters = new SearchTweetsParameters(query) 
+                { 
+                    PageSize = 10, 
+                    SearchType = SearchResultType.Recent 
+                };
 
                 var response = await tweetClient.Search.SearchTweetsAsync(searchParameters);
 
@@ -38,7 +42,6 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
                 throw;
             }
         }
-
 
         #region private methods
         private static IList<TweetTextResponse> MapperTweetsResponse(ITweet[] response)
@@ -61,7 +64,7 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
 
         private TwitterClient Authenticate()
         {
-            return new TwitterClient(new ConsumerOnlyCredentials { BearerToken = _configuration.GetSection("BearerToken").Value });
+            return new TwitterClient(new ConsumerOnlyCredentials { BearerToken = _twitterSettings.BearerToken });
         }
         #endregion
     }

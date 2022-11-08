@@ -18,13 +18,6 @@ namespace TwitterAnalysis.Application.Controllers
             _twitterSearchProcessor = twitterSearchProcessor;
         }
 
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok("Just Testing");
-        }
-
-
         [HttpPost()]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -35,6 +28,13 @@ namespace TwitterAnalysis.Application.Controllers
             var result = await _twitterSearchProcessor.ProcessSearchByQuery(request.Query);
 
             return Ok(result);
+        }
+
+        [HttpGet]
+        public ActionResult GetUserByTweet([FromQuery] string userId, [FromBody] QueryRequest request)
+        {
+
+            return BadRequest("Not implemented yet");
         }
     }
 }

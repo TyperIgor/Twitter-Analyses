@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using System.Data;
+using System.Threading.Tasks;
 using TwitterAnalysis.Infrastructure.Data.Interfaces;
 
 namespace TwitterAnalysis.Infrastructure.Data.Repository
@@ -14,6 +15,11 @@ namespace TwitterAnalysis.Infrastructure.Data.Repository
         public void Dispose()
         {
             _npgsqlConnection.Dispose();
+        }
+
+        public async Task CloseConnection()
+        {
+            await _npgsqlConnection.CloseAsync();
         }
     }
 }

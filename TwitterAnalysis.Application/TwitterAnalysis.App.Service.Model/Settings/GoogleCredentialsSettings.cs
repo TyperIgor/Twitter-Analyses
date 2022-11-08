@@ -2,7 +2,7 @@
 
 namespace TwitterAnalysis.App.Service.Model.Settings
 {
-    public class Credentials
+    public class GoogleCredentialsSettings
     {
         [JsonPropertyName("type")]
         public string Type { get; set; }

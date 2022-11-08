@@ -1,6 +1,7 @@
 ﻿using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TwitterAnalysis.App.Service.Model.Settings;
 using TwitterAnalysis.App.Services;
 using TwitterAnalysis.App.Services.FileProcessor;
 using TwitterAnalysis.App.Services.Interfaces;
@@ -32,6 +33,9 @@ namespace TwitterAnalysis.Infrastructure.DI
                 .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<QueryFieldValidator>());
 
             services.AddScoped<IGoogleSheetsApiProcessor, GoogleSheetsProcessor>();
+
+            services.Configure<TwitterSettings>(configuration.GetSection(nameof(TwitterSettings)));
+            services.Configure<GoogleCredentialsSettings>(configuration.GetSection(nameof(GoogleCredentialsSettings)));
 
             return services;
         }

@@ -1,3 +1,4 @@
+using TwitterAnalysis.App.Service.Model.Settings;
 using TwitterAnalysis.Application.Middleware;
 using TwitterAnalysis.Application.Swagger;
 using TwitterAnalysis.Infrastructure.DI;
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDependencies(builder.Configuration);
+
+//builder.Services.Configure<TwitterSettings>(builder.Configuration.GetSection("TwitterSettings"));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerServices();

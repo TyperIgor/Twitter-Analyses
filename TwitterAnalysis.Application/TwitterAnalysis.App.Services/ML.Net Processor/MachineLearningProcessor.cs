@@ -10,11 +10,12 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 {
     public class MachineLearningProcessor : IMachineLearningProcessor
     {
-        MLContext MlContext { get; set; } = new MLContext();
+        MLContext MlContext { get; set; } = new();
         private readonly ITweetRepository _tweetRepository;
         private readonly IGoogleSheetsApiProcessor _sheetsApi;
 
-        public MachineLearningProcessor(ITweetRepository tweetRepository, IGoogleSheetsApiProcessor sheetsApi)
+        public MachineLearningProcessor(ITweetRepository tweetRepository, 
+                                        IGoogleSheetsApiProcessor sheetsApi)
         {
             _tweetRepository = tweetRepository;
             _sheetsApi = sheetsApi;
@@ -22,13 +23,13 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 
         public async Task<TweetsResults> BuildBinaryAlgorithmClassificationToTweets(IList<TweetTextResponse> tweetDatas)
         {
-            var trainingCollection = await _sheetsApi.ExtractSheetsContent();
-
-            var inputModel = ImplementAlgorithmTrainingFromCollection(trainingCollection);
-
             var modelsDatas = await _tweetRepository.GetRacistsPhrasesToModelEnter();
 
-            var dataViewFromModels = MlContext.Data.LoadFromEnumerable(modelsDatas);
+            var inputModel = ImplementAlgorithmTrainingFromCollection(modelsDatas);
+
+            var trainingCollection = await _sheetsApi.ExtractSheetsContent();
+
+            var dataViewFromModels = MlContext.Data.LoadFromEnumerable(trainingCollection);
 
             var predictions = inputModel.Transform(dataViewFromModels);
 
@@ -64,7 +65,7 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 
                 tweetResult.Tweets.Add(new TweetData()
                 {
-                    TwitterUser = twt.User,
+                    User = twt.User,
                     Text = twt.Text,
                     TweetRacistResult = feedback.WasRacist
                 });

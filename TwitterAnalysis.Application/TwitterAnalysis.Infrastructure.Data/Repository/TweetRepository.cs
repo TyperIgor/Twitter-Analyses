@@ -26,7 +26,7 @@ namespace TwitterAnalysis.Infrastructure.Data.Repository
             }
             finally
             {
-                await _npgsqlConnection.CloseAsync();
+                await CloseConnection();
 
                 if (_npgsqlConnection.State == ConnectionState.Closed)
                     Dispose();

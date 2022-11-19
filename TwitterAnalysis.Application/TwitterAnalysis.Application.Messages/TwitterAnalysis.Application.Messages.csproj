@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TwitterAnalysis.App.Service.Common\TwitterAnalysis.App.Service.Common.csproj" />
+    <ProjectReference Include="..\TwitterAnalysis.App.Services\TwitterAnalysis.App.Services.csproj" />
+  </ItemGroup>
+
+</Project>

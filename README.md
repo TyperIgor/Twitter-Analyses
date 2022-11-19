@@ -5,8 +5,6 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/TyperIgor/README-template?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/TyperIgor/README-template?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/TyperIgor/README-template?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/TyperIgor/README-template?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/TyperIgor/README-template?style=for-the-badge)
 
 ![image](https://user-images.githubusercontent.com/46224297/174506562-95ec8650-ab1a-4e43-9b49-7a037bb5bc82.png)
 
@@ -17,44 +15,28 @@
 The project is still on development... 
 
 - [x] Task 1 : Authenticate on twitter with bearer token
-- [x] Task 2 :
-- [ ] 
-- [ ] 
-- [ ] 
+- [x] Task 2 : Filter racists comments on tweet
+- [x] Task 3 : Return racists coments and classify them with machine learning algorithm
+- [x] Task 4 : Generate response within racial classfication  
 
 ## 💻 Preconditions
 
-Antes de começar, verifique se você atendeu aos seguintes requisitos:
+before start, make sure you have met the following requirements:
 
-* Você instalou a versão mais recente do .Net (5.0 or 6.0)
-* Você tem uma máquina  Windows / Linux / Mac. Todos são compatíveis
-* Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
+* You have instaled .Net version (5.0 or 6.0)
+* Your operational system should be Windows / Linux / Mac. 
 
 ## 🚀 Getting Start <TwitterAnalysis>
 
-Para instalar o TwitterAnalysis Application, siga estas etapas:
 
-Linux e macOS:
-```
-<comando_de_instalação>
-```
+## ☕ Using Twitter Analysis application
 
-Windows:
-```
-<comando_de_instalação>
-```
-
-## ☕ Usando <nome_do_projeto>
-
-Para usar <nome_do_projeto>, siga estas etapas:
 
 ```
-<exemplo_de_uso>
+<Example of usage>
 ```
 
-Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Fornece uma referência de opções para pontos de bônus!
-
-## 📫 Contribuindo para <nome_do_projeto>
+## 📫 Helping the project 
 <!---Se o seu README for longo ou se você tiver algum processo ou etapas específicas que deseja que os contribuidores sigam, considere a criação de um arquivo CONTRIBUTING.md separado--->
 Para contribuir com <nome_do_projeto>, siga estas etapas:
 

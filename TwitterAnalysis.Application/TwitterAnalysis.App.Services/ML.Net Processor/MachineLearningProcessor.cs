@@ -35,7 +35,7 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 
             var metrics = MlContext.BinaryClassification.Evaluate(predictions, "ActiveRacist");
 
-            return GenerateAnalyseTextFromTweet(tweetDatas, inputModel, MlContext, metrics);
+            return GenerateAnalyseTextFromTweet(tweetDatas, inputModel, metrics);
         }
 
         #region private methods
@@ -50,9 +50,9 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
             return pipeline.Fit(dataview);
         }
 
-        private static TweetsResults GenerateAnalyseTextFromTweet(IList<TweetTextResponse> tweets, ITransformer model, MLContext mLContext, BinaryClassificationMetrics metrics)
+        private TweetsResults GenerateAnalyseTextFromTweet(IList<TweetTextResponse> tweets, ITransformer model, BinaryClassificationMetrics metrics)
         {
-            PredictionEngine<RacistModelData, TweetClassification> predictEngine = mLContext.Model.CreatePredictionEngine<RacistModelData, TweetClassification>(model);
+            PredictionEngine<RacistModelData, TweetClassification> predictEngine = MlContext.Model.CreatePredictionEngine<RacistModelData, TweetClassification>(model);
 
             var modelData = new RacistModelData();
             var tweetResult = new TweetsResults();
@@ -71,7 +71,7 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
                 });
             }
 
-            tweetResult.AlgorithmMetricsSummary = new AlgorithmMetricsSummary()
+            tweetResult.AlgorithmMetricsSummary = new()
             {
                 Accuracy = metrics.Accuracy,
                 PositivePrecision = metrics.PositivePrecision,

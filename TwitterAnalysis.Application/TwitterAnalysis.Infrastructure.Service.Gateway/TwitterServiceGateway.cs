@@ -20,17 +20,13 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
             _twitterSettings = options.Value;
         }
 
-        public async Task<IList<TweetTextResponse>> GetTweetBySearch(string query)
+        public async Task<IList<TweetTextResponse>> GetTweetBySearch(string query, int pageSize)
         {
             try
             {
                 ITwitterClient tweetClient = Authenticate();
 
-                var searchParameters = new SearchTweetsParameters(query) 
-                { 
-                    PageSize = 10, 
-                    SearchType = SearchResultType.Recent 
-                };
+                var searchParameters = BuildParameters(query, pageSize);
 
                 var response = await tweetClient.Search.SearchTweetsAsync(searchParameters);
 
@@ -41,6 +37,16 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
                 Console.WriteLine($"Error : {e.Message}");
                 throw;
             }
+        }
+
+        private static SearchTweetsParameters BuildParameters(string query, int pageSize)
+        {
+            return new SearchTweetsParameters(query)
+            {
+                PageSize = pageSize,
+                SearchType = SearchResultType.Recent,
+                ContinueMinMaxCursor = ContinueMinMaxCursor.UntilNoItemsReturned,
+            };
         }
 
         #region private methods

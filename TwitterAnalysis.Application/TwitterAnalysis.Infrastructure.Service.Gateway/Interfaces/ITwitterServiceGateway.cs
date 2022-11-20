@@ -6,6 +6,6 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway.Interfaces
 {
     public interface ITwitterServiceGateway
     {
-        Task<IList<TweetTextResponse>> GetTweetBySearch(string query);
+        Task<IList<TweetTextResponse>> GetTweetBySearch(string query, int pageSize);
     }
 }

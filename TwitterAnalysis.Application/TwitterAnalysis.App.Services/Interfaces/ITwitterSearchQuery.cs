@@ -5,6 +5,6 @@ namespace TwitterAnalysis.App.Services.Interfaces
 {
     public interface ITwitterSearchQuery
     {
-        Task<TweetsResults> GetTweetBySearch(string query);
+        Task<TweetsResults> GetTweetBySearch(string query, int pageSize);
     }
 }

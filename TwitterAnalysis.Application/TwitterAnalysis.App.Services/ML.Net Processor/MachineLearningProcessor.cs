@@ -45,14 +45,15 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 
             var pipeline = MlContext.Transforms.Text.FeaturizeText("Features", "Text")
                 .AppendCacheCheckpoint(MlContext)
-                .Append(MlContext.BinaryClassification.Trainers.SdcaLogisticRegression(featureColumnName: "Features", labelColumnName: "ActiveRacist"));
+                .Append(MlContext.BinaryClassification.Trainers
+                .SdcaLogisticRegression(featureColumnName: "Features", labelColumnName: "ActiveRacist"));
 
             return pipeline.Fit(dataview);
         }
 
         private TweetsResults GenerateAnalyseTextFromTweet(IList<TweetTextResponse> tweets, ITransformer model, BinaryClassificationMetrics metrics)
         {
-            PredictionEngine<RacistModelData, TweetClassification> predictEngine = MlContext.Model.CreatePredictionEngine<RacistModelData, TweetClassification>(model);
+            var predictEngine = MlContext.Model.CreatePredictionEngine<RacistModelData, TweetClassification>(model);
 
             var modelData = new RacistModelData();
             var tweetResult = new TweetsResults();

@@ -19,9 +19,9 @@ namespace TwitterAnalysis.App.Services
             _machineLearningProcessor = machineLearningProcessor;  
         }
 
-        public async Task<TweetsResults> GetTweetBySearch(string query)
+        public async Task<TweetsResults> GetTweetBySearch(string query, int pageSize)
         {
-            var tweetData = await _twitterServiceGateway.GetTweetBySearch(query);
+            var tweetData = await _twitterServiceGateway.GetTweetBySearch(query, pageSize);
 
             return await _machineLearningProcessor.BuildBinaryAlgorithmClassificationToTweets(tweetData);
         }

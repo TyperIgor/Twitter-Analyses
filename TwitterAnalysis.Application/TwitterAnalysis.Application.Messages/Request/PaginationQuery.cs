@@ -10,7 +10,5 @@ namespace TwitterAnalysis.Application.Messages.Request
         }
 
         public int PageSize { get; set; }
-
-        public int PageNumber { get; set; }
     }
 }

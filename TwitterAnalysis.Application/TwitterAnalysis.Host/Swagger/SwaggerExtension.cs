@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-using System;
+﻿using Microsoft.OpenApi.Models;
 
 namespace TwitterAnalysis.Application.Swagger
 {

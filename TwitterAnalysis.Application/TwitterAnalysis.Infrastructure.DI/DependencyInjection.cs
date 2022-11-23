@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TwitterAnalysis.App.Service.Model.Settings;
 using TwitterAnalysis.App.Services;
+using TwitterAnalysis.App.Services.Data_Processor;
 using TwitterAnalysis.App.Services.FileProcessor;
 using TwitterAnalysis.App.Services.Interfaces;
 using TwitterAnalysis.App.Services.ML.Net_Processor;
@@ -21,21 +22,32 @@ namespace TwitterAnalysis.Infrastructure.DI
     {
         public static IServiceCollection AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {
+            #region User Layer
+            services.AddControllers()
+                    .AddFluentValidation(config => config
+                    .RegisterValidatorsFromAssemblyContaining<QueryFieldValidator>());
+            #endregion
+
+            #region Application/Services Layers 
             services.AddScoped<ITwitterSearchProcessor, TwitterSearchProcessor>();
+            services.AddScoped<ITrainingDataProcessor, TrainingDataProcessor>();
             services.AddScoped<IMachineLearningProcessor, MachineLearningProcessor>();
             services.AddScoped<ITwitterSearchQuery, TwitterSearchService>();
+            services.AddScoped<IGoogleSheetsApiProcessor, GoogleSheetsProcessor>();
+            services.AddScoped<ITrainingDataProcessor, TrainingDataProcessor>();
+            services.AddScoped<ITrainingAlgorithmProcessor, TrainingAlgorithmProcessor>();
+            #endregion
 
+            #region Infrastructure Layers
             services.AddScoped<ITwitterServiceGateway, TwitterServiceGateway>();
             services.AddScoped<IDbContext, DbContext>();
             services.AddScoped<ITweetRepository, TweetRepository>();
+            #endregion
 
-            services.AddControllers()
-                .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<QueryFieldValidator>());
-
-            services.AddScoped<IGoogleSheetsApiProcessor, GoogleSheetsProcessor>();
-
+            #region Configuration
             services.Configure<TwitterSettings>(configuration.GetSection(nameof(TwitterSettings)));
             services.Configure<GoogleCredentialsSettings>(configuration.GetSection(nameof(GoogleCredentialsSettings)));
+            #endregion
 
             return services;
         }

@@ -10,8 +10,6 @@ builder.Services.AddControllers();
 
 builder.Services.AddDependencies(builder.Configuration);
 
-//builder.Services.Configure<TwitterSettings>(builder.Configuration.GetSection("TwitterSettings"));
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerServices();
 

@@ -13,7 +13,7 @@ namespace TwitterAnalysis.Infrastructure.Data.Repository
     {
         public TweetRepository(IDbContext dbContext) : base(dbContext) { }
 
-        public async Task<IEnumerable<RacistModelData>> GetRacistsPhrasesToModelEnter()
+        public async Task<IEnumerable<RacistModelData>> GetRacistsPhrases()
         {
             try
             {
@@ -22,7 +22,7 @@ namespace TwitterAnalysis.Infrastructure.Data.Repository
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                throw e;
             }
             finally
             {

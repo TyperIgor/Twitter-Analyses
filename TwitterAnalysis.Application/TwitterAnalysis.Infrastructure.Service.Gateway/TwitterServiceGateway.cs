@@ -45,7 +45,6 @@ namespace TwitterAnalysis.Infrastructure.Service.Gateway
             {
                 PageSize = pageSize,
                 SearchType = SearchResultType.Recent,
-                ContinueMinMaxCursor = ContinueMinMaxCursor.UntilNoItemsReturned,
             };
         }
 

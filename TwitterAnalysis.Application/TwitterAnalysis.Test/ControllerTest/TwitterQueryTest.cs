@@ -6,6 +6,7 @@ using TwitterAnalysis.App.Services.Interfaces;
 using TwitterAnalysis.Application.Services;
 using TwitterAnalysis.Application.Messages.Response;
 using Moq;
+using TwitterAnalysis.Application.Messages.Request;
 
 namespace TwitterAnalysis.Test.ControllerTest
 {
@@ -27,11 +28,11 @@ namespace TwitterAnalysis.Test.ControllerTest
         public void TwitterQuery_ProcessSearch_ShouldThrowNullException()
         {
             //Arrange 
-            _twitterSearchQuery.Setup(x => x.GetTweetBySearch(It.IsAny<string>())).Throws(new Exception());
+            _twitterSearchQuery.Setup(x => x.GetTweetBySearch(It.IsAny<string>(), It.IsAny<int>())).Throws(new Exception());
 
             //Act
             //assert
-            Assert.ThrowsAnyAsync<Exception>(() => twitterSearchProcessor.ProcessSearchByQuery(It.IsAny<string>()));
+            Assert.ThrowsAnyAsync<Exception>(() => twitterSearchProcessor.ProcessSearchByQuery(It.IsAny<string>(), It.IsAny<PaginationQuery>()));
         }
 
         [Fact]
@@ -39,10 +40,10 @@ namespace TwitterAnalysis.Test.ControllerTest
         {
             //Arrange
             TweetResponse tweets = new();
-            _twitterSearchProcessor.SetupSequence(x => x.ProcessSearchByQuery(It.IsAny<string>())).ReturnsAsync(tweets);
+            _twitterSearchProcessor.SetupSequence(x => x.ProcessSearchByQuery(It.IsAny<string>(), It.IsAny<PaginationQuery>())).ReturnsAsync(tweets);
 
             //Act
-            var result = twitterSearchProcessor.ProcessSearchByQuery(It.IsAny<string>());
+            var result = twitterSearchProcessor.ProcessSearchByQuery(It.IsAny<string>(), It.IsAny<PaginationQuery>());
 
             //Assert
             Assert.IsType<Task<TweetResponse>>(result);

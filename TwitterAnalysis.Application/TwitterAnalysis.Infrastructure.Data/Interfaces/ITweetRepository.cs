@@ -6,6 +6,6 @@ namespace TwitterAnalysis.Infrastructure.Data.Interfaces
 {
     public interface ITweetRepository
     {
-        Task<IEnumerable<RacistModelData>> GetRacistsPhrasesToModelEnter();
+        Task<IEnumerable<RacistModelData>> GetRacistsPhrases();
     }
 }

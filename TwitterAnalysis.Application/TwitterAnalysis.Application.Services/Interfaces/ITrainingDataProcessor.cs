@@ -8,6 +8,6 @@ namespace TwitterAnalysis.Application.Services.Interfaces
     {
         Task<DataTrainingResponse> GetAlgorithmDataList();
 
-        Task InsertNewDataForTraining();
+        Task<DataTrainingResponse> InsertNewDataForTraining(object request);
     }
 }

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Mapster;
 using System.Threading.Tasks;
 using TwitterAnalysis.Application.Mapper;
 using TwitterAnalysis.App.Services.Interfaces;
 using TwitterAnalysis.Application.Messages.Response;
 using TwitterAnalysis.Application.Services.Interfaces;
+using TwitterAnalysis.App.Service.Model;
 
 namespace TwitterAnalysis.Application.Services
 {
@@ -20,12 +20,14 @@ namespace TwitterAnalysis.Application.Services
         {
             var dataList = await _trainingAlgorithmProcessor.GetRacistsPhrasesForDataTraining();
 
-            return DataAlgorithmMapper.MapperDataTrainingToResponse(dataList);
+            return DataAlgorithmMapper.MapperDataColletionTrainingToResponse(dataList);
         }
 
-        public Task InsertNewDataForTraining()
+        public async Task<DataTrainingResponse> InsertNewDataForTraining(object request)
         {
-            throw new NotImplementedException();
+            await _trainingAlgorithmProcessor.InsertPhraseToAlgorithmTraining(request.Adapt<RacistModelData>());
+
+            return DataAlgorithmMapper.MapperTrainingResponseBaseOperation();
         }
     }
 }

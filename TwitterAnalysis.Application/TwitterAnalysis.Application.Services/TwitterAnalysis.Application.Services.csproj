@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TwitterAnalysis.App.Services\TwitterAnalysis.App.Services.csproj" />
     <ProjectReference Include="..\TwitterAnalysis.Application.Mapper\TwitterAnalysis.Application.Mapper.csproj" />
     <ProjectReference Include="..\TwitterAnalysis.Application.Messages\TwitterAnalysis.Application.Messages.csproj" />

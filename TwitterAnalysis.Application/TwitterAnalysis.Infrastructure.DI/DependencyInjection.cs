@@ -26,6 +26,9 @@ namespace TwitterAnalysis.Infrastructure.DI
             services.AddControllers()
                     .AddFluentValidation(config => config
                     .RegisterValidatorsFromAssemblyContaining<QueryFieldValidator>());
+            services.AddControllers()
+                    .AddFluentValidation(config => config
+                    .RegisterValidatorsFromAssemblyContaining<PhraseRequestValidator>());
             #endregion
 
             #region Application/Services Layers 
@@ -41,7 +44,7 @@ namespace TwitterAnalysis.Infrastructure.DI
             #region Infrastructure Layers
             services.AddScoped<ITwitterServiceGateway, TwitterServiceGateway>();
             services.AddScoped<IDbContext, DbContext>();
-            services.AddScoped<ITweetRepository, TweetRepository>();
+            services.AddScoped<IDataTrainingRepository, DataTrainingRepository>();
             #endregion
 
             #region Configuration

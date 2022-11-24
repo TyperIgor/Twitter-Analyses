@@ -1,4 +1,3 @@
-using TwitterAnalysis.App.Service.Model.Settings;
 using TwitterAnalysis.Application.Middleware;
 using TwitterAnalysis.Application.Swagger;
 using TwitterAnalysis.Infrastructure.DI;

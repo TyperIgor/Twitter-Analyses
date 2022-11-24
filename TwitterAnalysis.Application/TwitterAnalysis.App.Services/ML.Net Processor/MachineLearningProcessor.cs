@@ -11,10 +11,10 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
     public class MachineLearningProcessor : IMachineLearningProcessor
     {
         MLContext MlContext { get; set; } = new();
-        private readonly ITweetRepository _tweetRepository;
+        private readonly IDataTrainingRepository _tweetRepository;
         private readonly IGoogleSheetsApiProcessor _sheetsApi;
 
-        public MachineLearningProcessor(ITweetRepository tweetRepository, 
+        public MachineLearningProcessor(IDataTrainingRepository tweetRepository, 
                                         IGoogleSheetsApiProcessor sheetsApi)
         {
             _tweetRepository = tweetRepository;

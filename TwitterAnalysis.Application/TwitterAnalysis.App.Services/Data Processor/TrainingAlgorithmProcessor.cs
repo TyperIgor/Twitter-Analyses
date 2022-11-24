@@ -9,9 +9,9 @@ namespace TwitterAnalysis.App.Services.Data_Processor
 {
     public class TrainingAlgorithmProcessor : ITrainingAlgorithmProcessor
     {
-        private readonly ITweetRepository _tweetRepository;
+        private readonly IDataTrainingRepository _tweetRepository;
 
-        public TrainingAlgorithmProcessor(ITweetRepository tweetRepository)
+        public TrainingAlgorithmProcessor(IDataTrainingRepository tweetRepository)
         {
             _tweetRepository = tweetRepository;
         }
@@ -19,15 +19,20 @@ namespace TwitterAnalysis.App.Services.Data_Processor
         {
             var listPhrases = await _tweetRepository.GetRacistsPhrases();
 
-            return MapperFromDatabase(listPhrases);
+            return MapperFromDomain(listPhrases);
         }
 
-        private static DataTrainingResult MapperFromDatabase(IEnumerable<RacistModelData> racistModelDatas)
+        private static DataTrainingResult MapperFromDomain(IEnumerable<RacistModelData> racistModelDatas)
         {
             return new DataTrainingResult()
             {
                 DataList = racistModelDatas,
             };
+        }
+
+        public async Task InsertPhraseToAlgorithmTraining(RacistModelData data)
+        {
+            await _tweetRepository.InsertRacistPhraseAlgorithmTraining(data);
         }
     }
 }

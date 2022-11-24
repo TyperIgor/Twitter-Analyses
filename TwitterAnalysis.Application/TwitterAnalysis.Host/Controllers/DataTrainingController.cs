@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TwitterAnalysis.Application.Messages.Request;
 using TwitterAnalysis.Application.Messages.Response;
 using TwitterAnalysis.Application.Services.Interfaces;
 
@@ -24,9 +25,11 @@ namespace TwitterAnalysis.Host.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post()
+        public async Task<ActionResult<DataTrainingResponse>> Post([FromBody] RacistPhraseRequest request)
         {
-            return Ok("Not working yet");
+            var result = await _trainingDataProcessor.InsertNewDataForTraining(request);
+
+            return Ok(result);
         }
     }
 }

@@ -49,7 +49,6 @@ namespace TwitterAnalysis.App.Services.FileProcessor
                     Text = Convert.ToString(item[0])
                 });
             }
-            
 
             return racistPhrases;
         }

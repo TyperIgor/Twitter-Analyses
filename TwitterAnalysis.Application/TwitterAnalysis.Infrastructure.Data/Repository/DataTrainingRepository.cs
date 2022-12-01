@@ -19,7 +19,7 @@ namespace TwitterAnalysis.Infrastructure.Data.Repository
             {
                 return await _npgsqlConnection.QueryAsync<RacistModelData>(TrainingQuery.TrainingRacistPhrasesQuery);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

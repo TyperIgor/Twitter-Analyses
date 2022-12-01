@@ -65,7 +65,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Infrastruct
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Middlewares", "5. Middlewares", "{859BC765-EDA0-4DBB-8695-D241BCE5AB96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterAnalysis.Application.Middleware", "TwitterAnalysis.Application.Middleware\TwitterAnalysis.Application.Middleware.csproj", "{0EA903CA-2463-4429-BAB7-6FDD2E832CD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Application.Middleware", "TwitterAnalysis.Application.Middleware\TwitterAnalysis.Application.Middleware.csproj", "{0EA903CA-2463-4429-BAB7-6FDD2E832CD9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Authentication", "4. Authentication", "{2191C2D4-E3F9-49E6-8D97-C143A2446FDF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Infrastructure.Auth", "TwitterAnalysis.Infrastructure.Auth\TwitterAnalysis.Infrastructure.Auth.csproj", "{CA655128-2C4A-4B37-884D-B87A713292BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Authentication", "6. Authentication", "{F14FACBF-369E-4C1B-98C9-5307B6A2C7E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterAnalysis.Application.Auth", "TwitterAnalysis.Application.Auth\TwitterAnalysis.Application.Auth.csproj", "{8B3FC08A-B315-4B78-BE90-0A20C1FE644B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -133,6 +141,14 @@ Global
 		{0EA903CA-2463-4429-BAB7-6FDD2E832CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EA903CA-2463-4429-BAB7-6FDD2E832CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EA903CA-2463-4429-BAB7-6FDD2E832CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA655128-2C4A-4B37-884D-B87A713292BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA655128-2C4A-4B37-884D-B87A713292BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA655128-2C4A-4B37-884D-B87A713292BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA655128-2C4A-4B37-884D-B87A713292BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B3FC08A-B315-4B78-BE90-0A20C1FE644B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B3FC08A-B315-4B78-BE90-0A20C1FE644B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B3FC08A-B315-4B78-BE90-0A20C1FE644B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B3FC08A-B315-4B78-BE90-0A20C1FE644B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -169,6 +185,10 @@ Global
 		{553C6C46-AB4F-412D-98AA-FD74DA54C91C} = {A297CBA3-6F13-427A-B08B-32916CE142A9}
 		{859BC765-EDA0-4DBB-8695-D241BCE5AB96} = {A7FAFD83-21DE-4092-ADA9-993A4E17D24F}
 		{0EA903CA-2463-4429-BAB7-6FDD2E832CD9} = {859BC765-EDA0-4DBB-8695-D241BCE5AB96}
+		{2191C2D4-E3F9-49E6-8D97-C143A2446FDF} = {67D3ED35-275F-48F6-8E93-C8315C6101E7}
+		{CA655128-2C4A-4B37-884D-B87A713292BC} = {2191C2D4-E3F9-49E6-8D97-C143A2446FDF}
+		{F14FACBF-369E-4C1B-98C9-5307B6A2C7E0} = {A7FAFD83-21DE-4092-ADA9-993A4E17D24F}
+		{8B3FC08A-B315-4B78-BE90-0A20C1FE644B} = {F14FACBF-369E-4C1B-98C9-5307B6A2C7E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3FAEFDF5-E4C9-46CC-845E-A58925F6E5A9}

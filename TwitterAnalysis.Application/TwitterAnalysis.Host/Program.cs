@@ -7,7 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-builder.Services.AddDependencies(builder.Configuration);
+builder.Services.AddHostDependencies(builder.Configuration);
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
+builder.Services.AddAuthentication();
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerServices();
@@ -25,6 +29,7 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

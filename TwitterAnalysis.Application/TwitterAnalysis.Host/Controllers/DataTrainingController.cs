@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using TwitterAnalysis.Application.Messages.Request;
 using TwitterAnalysis.Application.Messages.Response;
 using TwitterAnalysis.Application.Services.Interfaces;
@@ -17,6 +19,10 @@ namespace TwitterAnalysis.Host.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         public async Task<ActionResult<DataTrainingResponse>> GetTrainingData()
         {
             var result = await _trainingDataProcessor.GetAlgorithmDataList();
@@ -25,6 +31,10 @@ namespace TwitterAnalysis.Host.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         public async Task<ActionResult<DataTrainingResponse>> Post([FromBody] RacistPhraseRequest request)
         {
             var result = await _trainingDataProcessor.InsertNewDataForTraining(request);

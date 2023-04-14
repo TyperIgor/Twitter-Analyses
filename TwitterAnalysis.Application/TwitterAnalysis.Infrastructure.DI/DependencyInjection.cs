@@ -84,7 +84,7 @@ namespace TwitterAnalysis.Infrastructure.DI
             services.AddScoped<ITrainingDataProcessor, TrainingDataProcessor>();
             services.AddScoped<ITrainingAlgorithmProcessor, TrainingAlgorithmProcessor>();
             services.AddScoped<ILoginAuthProcessor, LoginAuthProcessor>();
-            services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+            services.AddTransient<IJwtTokenGenerator, JwtTokenGenerator>();
             services.AddScoped<IAuthLoginService, AuthLoginProcessor>();
             #endregion
 

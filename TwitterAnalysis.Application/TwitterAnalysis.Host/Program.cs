@@ -10,11 +10,11 @@ builder.Services.AddControllers();
 builder.Services.AddHostDependencies(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
-builder.Services.AddAuthentication();
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerServices();
+builder.Services.AddAuthentication();
 
 var app = builder.Build();
 

@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ApplicationTest\**" />
+    <EmbeddedResource Remove="ApplicationTest\**" />
+    <None Remove="ApplicationTest\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.17.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="Moq" Version="4.18.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -22,10 +29,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TwitterAnalysis.Application.Services\TwitterAnalysis.Application.Services.csproj" />
+    <ProjectReference Include="..\TwitterAnalysis.Host\TwitterAnalysis.Host.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ApplicationTest\" />
     <Folder Include="ServiceTest\" />
   </ItemGroup>
 

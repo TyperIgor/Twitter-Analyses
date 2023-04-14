@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoFixture;
+using System;
 using System.Threading.Tasks;
 using Xunit;
 using TwitterAnalysis.Application.Services.Interfaces;
@@ -7,6 +8,8 @@ using TwitterAnalysis.Application.Services;
 using TwitterAnalysis.Application.Messages.Response;
 using Moq;
 using TwitterAnalysis.Application.Messages.Request;
+using TwitterAnalysis.Application.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TwitterAnalysis.Test.ControllerTest
 {
@@ -15,38 +18,45 @@ namespace TwitterAnalysis.Test.ControllerTest
         private readonly ITwitterSearchProcessor twitterSearchProcessor;
         private readonly Mock<ITwitterSearchQuery> _twitterSearchQuery;
         private readonly Mock<ITwitterSearchProcessor> _twitterSearchProcessor;
+        private readonly Fixture fixture = new();
+        TwitterQueryController twitterQueryObject;
 
         public TwitterQueryTest() 
         {
             _twitterSearchQuery = new Mock<ITwitterSearchQuery>();
             _twitterSearchProcessor = new Mock<ITwitterSearchProcessor>();
             twitterSearchProcessor = new TwitterSearchProcessor(_twitterSearchQuery.Object);
-
+            twitterQueryObject = new TwitterQueryController(_twitterSearchProcessor.Object);
         }
         
         [Fact]
-        public void TwitterQuery_ProcessSearch_ShouldThrowNullException()
+        public async Task TwitterQuery_ProcessSearch_ShouldThrowNullException()
         {
             //Arrange 
-            _twitterSearchQuery.Setup(x => x.GetTweetBySearch(It.IsAny<string>(), It.IsAny<int>())).Throws(new Exception());
+            var queryRequest = fixture.Create<QueryRequest>();
+            var pagination = fixture.Create<PaginationQuery>();
+            _twitterSearchProcessor.Setup(x => x.ProcessSearchByQuery(It.IsAny<string>(), It.IsAny<PaginationQuery>())).Throws(new Exception());
 
             //Act
             //assert
-            Assert.ThrowsAnyAsync<Exception>(() => twitterSearchProcessor.ProcessSearchByQuery(It.IsAny<string>(), It.IsAny<PaginationQuery>()));
+            await Assert.ThrowsAnyAsync<Exception>(() => twitterQueryObject.PostQuery(queryRequest, pagination));
         }
 
         [Fact]
-        public void TwitterQuery_ProcessSearch_ShouldReturnTweetEntityType()
+        public async Task TwitterQuery_ProcessSearch_ShouldReturnOkTypeResult()
         {
             //Arrange
+            var queryRequest = fixture.Create<QueryRequest>();
+            var pagination = fixture.Create<PaginationQuery>();
             TweetResponse tweets = new();
-            _twitterSearchProcessor.SetupSequence(x => x.ProcessSearchByQuery(It.IsAny<string>(), It.IsAny<PaginationQuery>())).ReturnsAsync(tweets);
+
+            _twitterSearchProcessor.Setup(x => x.ProcessSearchByQuery(It.IsAny<string>(), It.IsAny<PaginationQuery>())).ReturnsAsync(tweets);
 
             //Act
-            var result = twitterSearchProcessor.ProcessSearchByQuery(It.IsAny<string>(), It.IsAny<PaginationQuery>());
+            var result = await twitterQueryObject.PostQuery(queryRequest, pagination);
 
             //Assert
-            Assert.IsType<Task<TweetResponse>>(result);
+            Assert.IsType<OkObjectResult>(result.Result);
         }
     }
 }

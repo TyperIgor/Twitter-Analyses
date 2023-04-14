@@ -21,11 +21,9 @@ namespace TwitterAnalysis.Infrastructure.Data.Repository
                     Secret = password,
                 };
 
-                var exist = await _npgsqlConnection.ExecuteScalarAsync<bool>(LoginQuery.UserQuery, parameters);
-
-                return exist;
+                return await _npgsqlConnection.ExecuteScalarAsync<bool>(LoginQuery.UserQuery, parameters);
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }

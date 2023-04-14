@@ -15,7 +15,7 @@ namespace TwitterAnalysis.Host.Controllers.Authentication
         private readonly ILoginAuthProcessor _loginAuthProcessor;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
         public AuthenticatorController(ILoginAuthProcessor loginAuthProcessor, 
-                              IJwtTokenGenerator jwtTokenGenerator)
+                                       IJwtTokenGenerator jwtTokenGenerator)
         {
             _loginAuthProcessor = loginAuthProcessor;
             _jwtTokenGenerator = jwtTokenGenerator;
@@ -24,7 +24,7 @@ namespace TwitterAnalysis.Host.Controllers.Authentication
         [HttpPost]
         [AllowAnonymous]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<dynamic> AuthenticateAsync([FromBody] LoginAuthRequest request)
         {
@@ -33,9 +33,9 @@ namespace TwitterAnalysis.Host.Controllers.Authentication
             if (!userExist)
                 return NotFound(request);
 
-            return new
-            {
+            return new {
                 token = _jwtTokenGenerator.GenerateToken(request),
+                UserRegistered = true
             };
         
         }

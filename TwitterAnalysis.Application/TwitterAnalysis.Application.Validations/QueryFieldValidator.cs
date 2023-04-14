@@ -15,6 +15,5 @@ namespace TwitterAnalysis.Application.Validations
                 .MinimumLength(5)
                     .WithMessage("Field query must have 5 legth at minimum");
         }
-
     }
 }

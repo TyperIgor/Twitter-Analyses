@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.App.Services.Interfaces;
@@ -22,6 +21,9 @@ namespace TwitterAnalysis.App.Services
         public async Task<TweetsResults> GetTweetBySearch(string query, int pageSize)
         {
             var tweetData = await _twitterServiceGateway.GetTweetBySearch(query, pageSize);
+
+            if (!tweetData.Any())
+                return null;
 
             return await _machineLearningProcessor.BuildBinaryAlgorithmClassificationToTweets(tweetData);
         }

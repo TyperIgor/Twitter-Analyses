@@ -11,19 +11,19 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
     public class MachineLearningProcessor : IMachineLearningProcessor
     {
         MLContext MlContext { get; set; } = new();
-        private readonly IDataTrainingRepository _tweetRepository;
+        private readonly IDataTrainingRepository _dataTrainingRepository;
         private readonly IGoogleSheetsApiProcessor _sheetsApi;
 
-        public MachineLearningProcessor(IDataTrainingRepository tweetRepository, 
+        public MachineLearningProcessor(IDataTrainingRepository dataTrainingRepository, 
                                         IGoogleSheetsApiProcessor sheetsApi)
         {
-            _tweetRepository = tweetRepository;
+            _dataTrainingRepository = dataTrainingRepository;
             _sheetsApi = sheetsApi;
         }
 
         public async Task<TweetsResults> BuildBinaryAlgorithmClassificationToTweets(IList<TweetTextResponse> tweetDatas)
         {
-            var modelsDatas = await _tweetRepository.GetRacistsPhrases();
+            var modelsDatas = await _dataTrainingRepository.GetRacistsPhrases();
 
             var inputModel = ImplementAlgorithmTrainingFromCollection(modelsDatas);
 
@@ -44,9 +44,9 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
             var dataview = MlContext.Data.LoadFromEnumerable(racistModels);
 
             var pipeline = MlContext.Transforms.Text.FeaturizeText("Features", "Text")
-                .AppendCacheCheckpoint(MlContext)
-                .Append(MlContext.BinaryClassification.Trainers
-                .SdcaLogisticRegression(featureColumnName: "Features", labelColumnName: "ActiveRacist"));
+                                                    .AppendCacheCheckpoint(MlContext)
+                                                    .Append(MlContext.BinaryClassification.Trainers
+                                                    .SdcaLogisticRegression(featureColumnName: "Features", labelColumnName: "ActiveRacist"));
 
             return pipeline.Fit(dataview);
         }
@@ -83,6 +83,7 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
 
             return tweetResult;
         }
+
         #endregion
     }
 }

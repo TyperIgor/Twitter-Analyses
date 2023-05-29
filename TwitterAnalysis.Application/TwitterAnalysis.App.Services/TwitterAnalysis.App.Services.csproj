@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TwitterAnalysis.Infrastructure.Cache\TwitterAnalysis.Infrastructure.Cache.csproj" />
     <ProjectReference Include="..\TwitterAnalysis.Infrastructure.Data\TwitterAnalysis.Infrastructure.Data.csproj" />
     <ProjectReference Include="..\TwitterAnalysis.Infrastructure.Service.Gateway\TwitterAnalysis.Infrastructure.Service.Gateway.csproj" />
   </ItemGroup>

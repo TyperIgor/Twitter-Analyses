@@ -9,9 +9,11 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.10" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.5.1" />
+    <PackageReference Include="StackExchange.Redis" Version="2.6.104" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +21,7 @@
     <ProjectReference Include="..\TwitterAnalysis.Application.Services\TwitterAnalysis.Application.Services.csproj" />
     <ProjectReference Include="..\TwitterAnalysis.Application.Validations\TwitterAnalysis.Application.Validations.csproj" />
     <ProjectReference Include="..\TwitterAnalysis.Infrastructure.Auth\TwitterAnalysis.Infrastructure.Auth.csproj" />
+    <ProjectReference Include="..\TwitterAnalysis.Infrastructure.Cache\TwitterAnalysis.Infrastructure.Cache.csproj" />
   </ItemGroup>
 
 </Project>

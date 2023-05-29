@@ -21,6 +21,8 @@ using TwitterAnalysis.Infrastructure.Data.Interfaces;
 using TwitterAnalysis.Infrastructure.Data.Repository;
 using TwitterAnalysis.Infrastructure.Service.Gateway;
 using TwitterAnalysis.Infrastructure.Service.Gateway.Interfaces;
+using TwitterAnalysis.Infrastructure.Cache.Interfaces;
+using TwitterAnalysis.Infrastructure.Cache;
 
 namespace TwitterAnalysis.Infrastructure.DI
 {
@@ -91,13 +93,20 @@ namespace TwitterAnalysis.Infrastructure.DI
             return services;
         }
 
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             #region Infrastructure Layers
             services.AddScoped<ITwitterServiceGateway, TwitterServiceGateway>();
             services.AddScoped<IDbContext, DbContext>();
             services.AddScoped<IDataTrainingRepository, DataTrainingRepository>();
             services.AddScoped<ILoginRepository, LoginRepository>();
+            services.AddScoped<ICacheService, CacheService>();
+
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.InstanceName = "instance";
+                options.Configuration = "localhost:6379";
+            });
             #endregion
 
             return services;

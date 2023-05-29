@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using FluentScheduler;
-using System.Threading;
+﻿using System.Threading;
 
 namespace TwitterAnalysis.Worker.Abstract
 {

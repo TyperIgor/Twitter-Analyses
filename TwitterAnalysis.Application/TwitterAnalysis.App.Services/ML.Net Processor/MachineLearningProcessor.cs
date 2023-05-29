@@ -1,9 +1,12 @@
 ﻿using Microsoft.ML;
 using Microsoft.ML.Data;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using TwitterAnalysis.App.Service.Model;
 using TwitterAnalysis.App.Services.Interfaces;
+using TwitterAnalysis.Infrastructure.Cache.Interfaces;
 using TwitterAnalysis.Infrastructure.Data.Interfaces;
 
 namespace TwitterAnalysis.App.Services.ML.Net_Processor
@@ -13,17 +16,20 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
         MLContext MlContext { get; set; } = new();
         private readonly IDataTrainingRepository _dataTrainingRepository;
         private readonly IGoogleSheetsApiProcessor _sheetsApi;
+        private readonly ICacheService _cacheService;
 
         public MachineLearningProcessor(IDataTrainingRepository dataTrainingRepository, 
-                                        IGoogleSheetsApiProcessor sheetsApi)
+                                        IGoogleSheetsApiProcessor sheetsApi,
+                                        ICacheService cacheService)
         {
             _dataTrainingRepository = dataTrainingRepository;
             _sheetsApi = sheetsApi;
+            _cacheService = cacheService;
         }
 
         public async Task<TweetsResults> BuildBinaryAlgorithmClassificationToTweets(IList<TweetTextResponse> tweetDatas)
         {
-            var modelsDatas = await _dataTrainingRepository.GetRacistsPhrases();
+            var modelsDatas = await TryGetModelTrainingFromCache();
 
             var inputModel = ImplementAlgorithmTrainingFromCollection(modelsDatas);
 
@@ -36,6 +42,20 @@ namespace TwitterAnalysis.App.Services.ML.Net_Processor
             var metrics = MlContext.BinaryClassification.Evaluate(predictions, "ActiveRacist");
 
             return GenerateAnalyseTextFromTweet(tweetDatas, inputModel, metrics);
+        }
+
+        private async Task<IEnumerable<RacistModelData>> TryGetModelTrainingFromCache()
+        {
+            var dataTrainingCache = await _cacheService.GetAllDataTrainingInCache("RacistModelList");
+
+            if (dataTrainingCache != null)
+                return JsonSerializer.Deserialize<IEnumerable<RacistModelData>>(dataTrainingCache);
+
+            var modelTraining = await _dataTrainingRepository.GetRacistsPhrases();
+
+            await _cacheService.SetCacheDataAsync("RacistModelList", modelTraining);
+
+            return modelTraining;
         }
 
         #region private methods

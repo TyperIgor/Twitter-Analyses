@@ -73,7 +73,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Infrastruct
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Authentication", "6. Authentication", "{F14FACBF-369E-4C1B-98C9-5307B6A2C7E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterAnalysis.Application.Auth", "TwitterAnalysis.Application.Auth\TwitterAnalysis.Application.Auth.csproj", "{8B3FC08A-B315-4B78-BE90-0A20C1FE644B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterAnalysis.Application.Auth", "TwitterAnalysis.Application.Auth\TwitterAnalysis.Application.Auth.csproj", "{8B3FC08A-B315-4B78-BE90-0A20C1FE644B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Cache", "5. Cache", "{C2AD9C53-BFF4-4126-AC3E-36F4426EA385}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterAnalysis.Infrastructure.Cache", "TwitterAnalysis.Infrastructure.Cache\TwitterAnalysis.Infrastructure.Cache.csproj", "{7BFF99EF-30F5-49E6-AFA2-32E74984D0B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,6 +153,10 @@ Global
 		{8B3FC08A-B315-4B78-BE90-0A20C1FE644B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B3FC08A-B315-4B78-BE90-0A20C1FE644B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B3FC08A-B315-4B78-BE90-0A20C1FE644B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BFF99EF-30F5-49E6-AFA2-32E74984D0B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BFF99EF-30F5-49E6-AFA2-32E74984D0B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BFF99EF-30F5-49E6-AFA2-32E74984D0B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BFF99EF-30F5-49E6-AFA2-32E74984D0B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -189,6 +197,8 @@ Global
 		{CA655128-2C4A-4B37-884D-B87A713292BC} = {2191C2D4-E3F9-49E6-8D97-C143A2446FDF}
 		{F14FACBF-369E-4C1B-98C9-5307B6A2C7E0} = {A7FAFD83-21DE-4092-ADA9-993A4E17D24F}
 		{8B3FC08A-B315-4B78-BE90-0A20C1FE644B} = {F14FACBF-369E-4C1B-98C9-5307B6A2C7E0}
+		{C2AD9C53-BFF4-4126-AC3E-36F4426EA385} = {67D3ED35-275F-48F6-8E93-C8315C6101E7}
+		{7BFF99EF-30F5-49E6-AFA2-32E74984D0B2} = {C2AD9C53-BFF4-4126-AC3E-36F4426EA385}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3FAEFDF5-E4C9-46CC-845E-A58925F6E5A9}

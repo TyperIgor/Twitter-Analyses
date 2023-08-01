@@ -32,5 +32,17 @@ namespace TwitterAnalysis.Application.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet()]
+        [Authorize]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        public async Task<ActionResult<object>> GetUserByTweetId()
+        {
+
+
+            return Ok();
+        }
     }
 }

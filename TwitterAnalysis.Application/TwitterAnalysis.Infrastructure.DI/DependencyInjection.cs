@@ -105,8 +105,13 @@ namespace TwitterAnalysis.Infrastructure.DI
             services.AddStackExchangeRedisCache(options =>
             {
                 options.InstanceName = "instance";
-                options.Configuration = "localhost:6379";
+                options.Configuration = configuration.GetSection("CacheSettings:Redis").Value;
             });
+
+            services.AddHealthChecks()
+                    .AddNpgSql(configuration.GetConnectionString("Database"), name: "Postgres Health Check")
+                    .AddRedis(redisConnectionString: "localhost:6379", name: "Redis Instance");
+
             #endregion
 
             return services;

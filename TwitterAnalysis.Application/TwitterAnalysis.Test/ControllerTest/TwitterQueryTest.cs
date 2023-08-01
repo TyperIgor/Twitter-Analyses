@@ -42,7 +42,7 @@ namespace TwitterAnalysis.Test.ControllerTest
             await Assert.ThrowsAnyAsync<Exception>(() => twitterQueryObject.PostQuery(queryRequest, pagination));
         }
 
-        [Fact]
+        [Fact(DisplayName = " Should return OK status code ")]
         public async Task TwitterQuery_ProcessSearch_ShouldReturnOkTypeResult()
         {
             //Arrange

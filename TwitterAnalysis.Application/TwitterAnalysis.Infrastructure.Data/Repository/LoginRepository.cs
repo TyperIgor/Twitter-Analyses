@@ -4,12 +4,17 @@ using TwitterAnalysis.Infrastructure.Data.Interfaces;
 using TwitterAnalysis.Infrastructure.Data.Query;
 using System.Threading.Tasks;
 using System.Data;
+using Microsoft.Extensions.Logging;
 
 namespace TwitterAnalysis.Infrastructure.Data.Repository
 {
     public class LoginRepository : Repository, ILoginRepository
     {
-        public LoginRepository(IDbContext dbContext) : base(dbContext) { }
+        private readonly ILogger<LoginRepository> _logger;
+        public LoginRepository(IDbContext dbContext, ILogger<LoginRepository> logger) : base(dbContext) 
+        {
+            _logger = logger;
+        }
 
         public async Task<bool> CheckLogin(string username, string password)
         {
@@ -23,8 +28,9 @@ namespace TwitterAnalysis.Infrastructure.Data.Repository
 
                 return await _npgsqlConnection.ExecuteScalarAsync<bool>(LoginQuery.UserQuery, parameters);
             }
-            catch
+            catch (Exception e)
             {
+                _logger.LogError("Error:", e.Message);
                 throw;
             }
             finally

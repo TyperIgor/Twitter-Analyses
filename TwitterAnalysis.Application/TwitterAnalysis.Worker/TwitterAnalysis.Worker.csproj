@@ -5,13 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Jobs\**" />
+    <EmbeddedResource Remove="Jobs\**" />
+    <None Remove="Jobs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentScheduler" Version="5.5.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Abstract\" />
-    <Folder Include="Jobs\" />
   </ItemGroup>
 
 </Project>

@@ -2,6 +2,7 @@
 using Google.Apis.Sheets.v4;
 using Google.Apis.Services;
 using System;
+using System.Linq;
 using System.Text.Json;
 using TwitterAnalysis.App.Service.Model.Settings;
 using TwitterAnalysis.App.Services.Interfaces;
@@ -17,8 +18,6 @@ namespace TwitterAnalysis.App.Services.FileProcessor
         private readonly GoogleCredentialsSettings _googleCredentialsSettings;
         static SheetsService SheetsService { get; set; }
         static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
-        const string SpreadsheetsId = "1Ee883eONUerxdkR2RVFta40mmbRfVIsaglqiGYCRii8";
-        const string Sheets = "AppRacial";
 
         public GoogleSheetsProcessor(IOptions<GoogleCredentialsSettings> options)
         {
@@ -35,21 +34,21 @@ namespace TwitterAnalysis.App.Services.FileProcessor
         #region private methods 
         private static async Task<IEnumerable<RacistModelData>> GetSheetFileWithRacistsTexts(SheetsService sheets)
         {
+            string SpreadsheetsId = "1Ee883eONUerxdkR2RVFta40mmbRfVIsaglqiGYCRii8";
+            string Sheets = "AppRacial";
+
             var range = $"{Sheets}!A:B";
-            var racistPhrases = new List<RacistModelData>();
+            List<RacistModelData> racistPhrases = new();
 
             var request = sheets.Spreadsheets.Values.Get(SpreadsheetsId, range);
-            var response = await request.ExecuteAsync();
+            var responseFromSheets = await request.ExecuteAsync();
 
-            foreach (var item in response.Values)
-            {
-                racistPhrases.Add(new RacistModelData()
-                {
-                    ActiveRacist = Convert.ToBoolean(item[1]),
-                    Text = Convert.ToString(item[0])
-                });
-            }
-
+            racistPhrases.AddRange(from dataOnSheets in responseFromSheets.Values
+                                   select new RacistModelData()
+                                   {
+                                       ActiveRacist = Convert.ToBoolean(dataOnSheets[1]),
+                                       Text = Convert.ToString(dataOnSheets[0])
+                                   });
             return racistPhrases;
         }
 

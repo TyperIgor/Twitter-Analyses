@@ -13,13 +13,13 @@ namespace TwitterAnalysis.Application.Mapper
             {
                 Data = racistModelData,
             }
-            .StatusMessageOperation(OperationMessageStatusEnum.SucessfullOperation);
+            .StatusMessageOperation(OperationMessageStatusEnum.SuccessfullOperation);
         }
 
 
         public static DataTrainingResponse MapperTrainingResponseBaseOperation()
         {
-            return new DataTrainingResponse().StatusMessageOperation(OperationMessageStatusEnum.SucessfullOperation);
+            return new DataTrainingResponse().StatusMessageOperation(OperationMessageStatusEnum.SuccessfullOperation);
         }
     }
 }

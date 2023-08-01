@@ -12,7 +12,7 @@ namespace TwitterAnalysis.Application.Mapper
                 Data = tweets,
             };
 
-            tweetResponse.StatusMessageTweetOperation(OperationMessageStatusEnum.SucessfullOperation);
+            tweetResponse.StatusMessageTweetOperation(OperationMessageStatusEnum.SuccessfullOperation);
 
             return tweetResponse;
         }

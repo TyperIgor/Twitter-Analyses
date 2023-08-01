@@ -27,5 +27,10 @@ namespace TwitterAnalysis.App.Services
 
             return await _machineLearningProcessor.BuildBinaryAlgorithmClassificationToTweets(tweetData);
         }
+
+        public Task GetUserTweet(string id)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

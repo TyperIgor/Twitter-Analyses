@@ -26,6 +26,7 @@ var app = builder.Build();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseHealthChecks("/health");
 
 app.UseHttpsRedirection();
 

@@ -24,11 +24,20 @@ namespace TwitterAnalysis.Infrastructure.Cache
 
         public async Task<string> GetAllDataTrainingInCache(string key)
         {
-            var jsonDataObject = await _cache.GetStringAsync(key);
-
-            if (jsonDataObject is null)
+            string? jsonDataObject;
+            try
             {
-                return default(string);
+                jsonDataObject = await _cache.GetStringAsync(key);
+
+                if (jsonDataObject is null)
+                {
+                    return default(string);
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
 
             return jsonDataObject;
